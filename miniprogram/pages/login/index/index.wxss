@@ -1,0 +1,128 @@
+/**index.wxss**/
+page{
+    background: #f7f7f7;
+}
+.backimage{
+    height: 35rpx;
+    width: 35rpx;
+    margin-left: 30rpx;
+}
+.topbox{
+    width: 100vw;
+    height: 220rpx;
+    /* background: pink; */
+    display: flex;
+}
+.topbox_text{
+    font-size: 55rpx;
+    margin-top: 40rpx;
+    margin-left: 55rpx;
+}
+.inputbox{
+    width: 100vw;
+    height: 420rpx;
+    /* background: pink; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputbox_topbox{
+    width: 650rpx;
+    height: 90rpx;
+    background: white;
+    border-radius: 80rpx;
+    border:2rpx solid #d1d1d1;
+    margin-top: 35rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+.inputbox_topbox_1{
+    font-size: 28rpx;
+    padding: 28rpx;
+    color: #a5a4a4;
+}
+.inputbox_topbox_2{
+    width: 70%;
+    height: 50rpx;
+    /* background: #000; */
+}
+.inputbox_centerbox_1{
+    font-size: 28rpx;
+    padding: 28rpx;
+    color: #a5a4a4;
+}
+.inputbox_centerbox_2{
+    width: 65%;
+    height: 50rpx;
+    /* background: #000; */
+}
+.inputbox_centerbox_3{
+    width: 90rpx;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+}
+.inputbox_centerbox_3 >image{
+    width: 50rpx;
+    height: 45rpx;
+    margin-left: 15rpx;
+}
+.inputbox_centerbox{
+    width: 650rpx;
+    height: 90rpx;
+    background: white;
+    border-radius: 80rpx;
+    border:2rpx solid #d1d1d1;
+    margin-top: 35rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.inputbox_bottombox{
+    width: 600rpx;
+    height: 90rpx;
+    /* background: white; */
+    /* border-radius: 80rpx; */
+    /* border:2rpx solid #d1d1d1; */
+    margin-top: 35rpx;
+}
+.inputbox_bottombox_text{
+    float: right;
+    font-size: 25rpx;
+}
+.buttonbox{
+    width: 100vw;
+    height: 300rpx;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+.buttonbox_box{
+    width: 400rpx;
+    height: 100rpx;
+    text-align: center;
+    line-height: 100rpx;
+    border-radius: 50rpx;
+    color: white;
+    background: #ff9800;
+}
+.bottombox{
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 80rpx;
+    justify-content: center;
+    align-items: center;
+}
+.bottombox_box1{
+    font-size: 27rpx;
+}
+.bottombox_box2{
+    font-size: 27rpx;
+    color:#ff9800 ;
+    margin-left: 10rpx;
+}

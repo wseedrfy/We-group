@@ -1,0 +1,42 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    padding: 20rpx;
+    background-color: rgb(129, 241, 55);
+    font-size: 30rpx;
+  }
+  .nav-switch-style{
+    color: snow;
+  }
+  .style-default{
+    background-color: rgb(247, 229, 130);
+    text-align: center;
+    height: 500rpx;
+    width: 100%;
+  }
+  .box{
+      height: 1200rpx;
+      width: 100%;
+  }
+  .style-roll{
+    background-color: rgb(130, 177, 247);
+    text-align: center;
+    height: 800rpx;
+    width: 100%;
+    overflow-x: scroll;
+  }
+  .textbox{
+    height: 90rpx;
+    width: 100%;
+    background-color: red;
+  }
+  .style-roll .swiperbox{
+    height: 100%;
+    width: 100%;
+  }
+  .style-roll .swiperbox2{
+    height: 100%;
+    width: 100%;
+  }
+
+  

@@ -1,0 +1,52 @@
+<view class="info">
+    <view class="create_RoomName">
+        <view class="txt">自习室名称*</view>
+        <view class="roomName">
+            <input type="text" placeholder="请输入自习室名称" value="{{roomName}}" bindinput="write_Txt" id="name"/>
+        </view>
+    </view>
+    <view class="create_RoomBrief">
+        <view class="txt">自习室简介</view>
+        <view class="roomBrief">
+            <input type="text" placeholder="请输入自习室简介" value="{{roomBrief}}" bindinput="write_Txt" id="Brief"/>
+        </view>
+    </view>
+    <view class="choose_RoomNmu">
+        <view class="txt">人数限制</view>
+        <view class="roomNmu">
+            <radio-group bindchange="radioChange">
+                <label class="label" wx:for="{{numLimit}}" wx:key="{{item.value}}">
+                    <view class="labe_Left">
+                        <radio value="{{item.value}}" checked="true" />
+                    </view>
+                    <view class="label_Right">{{item.name}}</view>
+                </label>
+            </radio-group>
+        </view>
+    </view>
+    <view class="choose_RoomLabel">
+        <view class="txt">自习室标签</view>
+        <view class="RoomLabel">
+            <image class="label_image"></image>
+            <!-- 选择标签 -->
+            <view class="label_input">
+                <picker bindchange="bindPickerChange" name="lable1" value="{{index}}" range="{{array}}">
+                    <view class="{{ bqshuru==0?'meibq':'bqpicker'}}">
+                        {{qxbq}}
+                    </view>
+                </picker>
+            </view>
+            <view class="line"></view>
+        </view>
+    </view>
+    <view class="choose_RoomPic">
+        <view class="txt">选择照片</view>
+        <view class="roomPic" bindtap='browse'>
+            <image class="Pic" src="{{aimgurl}}"></image>
+        </view>
+    </view>
+</view>
+<view class="btn">
+    <view class="btn_create" bindtap="Save_and_Create">创建</view>
+    <view class="cancel" bindtap="cancel">取消</view>
+</view>

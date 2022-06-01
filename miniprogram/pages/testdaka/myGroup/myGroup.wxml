@@ -1,0 +1,55 @@
+<view class="imageBg" style="background-image: url({{groupData.bgurl}});">
+  <view style="height: {{statusBarHeight}}px;width: 100vw;position: sticky;top: 0;"></view>
+  <view style="height: {{lineHeight}}px;width: 100vw;display: flex;flex-direction: row;align-items: center;position: sticky;top:{{statusBarHeight}}px;">
+    <image style="width: 43rpx;height: 43rpx;margin-left: 20rpx;" bindtap="back" src="./images/back.png"></image>
+    <image style="width: 39rpx;height: 43rpx;margin-left: 289rpx;" src="./images/rank.png"></image>
+    <image style="width: 39rpx;height: 43rpx;margin-left: 33rpx;" src="./images/shousuo.png"></image>
+    <image style="width: 43rpx;height: 43rpx;margin-left: 33rpx;transform: rotate(180deg);" src="./images/more.png"></image>
+  </view>
+  <view class="userUrl">
+    <image src="{{myurl}}"></image>
+    <view style="margin-left: 15rpx;margin-right: 20rpx;font-size: 26rpx;color: rgb(241, 241, 241);">{{myname}}</view>
+  </view>
+</view>
+<view class="textBox">
+  <view class="textBox_title">
+    <view class="textBox_title_left">{{groupData.groupName}}</view>
+    <view class="textBox_title_right">分享</view>
+  </view>
+  <view class="textBox_tag"></view>
+  <view class="textBox_daka">
+    <view class="textBox_daka_daka" bindtap="intoChallenge">
+      <image class="textBox_daka_daka_left" src="./images/daka.png"></image>
+      <view class="textBox_daka_daka_center">打卡挑战</view>
+      <view class="textBox_daka_daka_right">去打卡</view>
+    </view>
+  </view>
+  <view class="textBox_post" wx:for="{{postarr}}" data-index="{{index}}" bindtap="intoPost">
+    <view class="textBox_post_topBox">
+      <view class="textBox_post_topBox_userUrl"><image src="{{item.wxurl}}"></image></view>
+      <view class="textBox_post_topBox_userInfo"> 
+        <view class="textBox_post_topBox_userInfo_name">
+          <view class="textBox_post_topBox_userInfo_name_name">{{item.wxname}}</view>
+          <view class="textBox_post_topBox_userInfo_name_title" wx:if="{{item.isleader}}">组长</view>
+        </view>
+        <view class="textBox_post_topBox_userInfo_time">{{item.sendtime}}</view>
+      </view>
+      <view class="textBox_post_topBox_right"><view></view></view>
+    </view>
+    <view class="textBox_post_textBox">{{item.text}}</view>
+    <view class="textBox_post_bottomBox">
+      <view style="display: flex;flex-direction: row;align-items: center;">
+        <image class="textBox_post_bottomBox_left" src="{{item.mylike?'../showPost/image/yidianzan.png':'./images/zan.png'}}"></image>
+        <view style="margin-left: {{item.likenum == 0?0:10}}rpx;color:{{item.mylike?'#efb336':''}};">{{item.likenum == 0?'':item.likenum}}</view>
+      </view>
+      <view style="display: flex;flex-direction: row;align-items: center;">
+        <image class="textBox_post_bottomBox_center" src="./images/huifu.png"></image>
+        <view style="margin-left: {{item.comment.length == 0?0:10}}rpx;">{{item.comment.length == 0?"":item.comment.length}}</view>
+      </view>
+      <image class="textBox_post_bottomBox_right" src="./images/zhuanfa.png"></image>
+    </view> 
+    <view class="textBox_post_line"><view></view></view>
+  </view>
+  <view style="width: 100vw;height: auto;padding: 30rpx 0;text-align: center;letter-spacing: 2rpx;font-size: small;color: #b3b3b3;">没有更多内容</view>
+</view>
+<view class="addText" bindtap="addPost"><image src="./images/xie.png"></image></view>

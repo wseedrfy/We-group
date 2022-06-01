@@ -1,0 +1,16 @@
+<view class="head"></view>
+<view class="Timer">
+    <view class="Group_Name">{{Group_Name}}</view>
+    <view class="clock">{{time}}</view>
+</view>
+<view class="tail">
+    <view class="submit" wx:if="{{state == 'ready'}}">
+        <image class="submit_pic" src="../images/flag.png"></image>
+    </view>
+    <view class="start" wx:if="{{state == 'ready'}}" bindtap="begin">
+        <image class="start_pic" src="../images/start.png"></image>
+    </view>
+    <view class="stop" wx:if="{{state == 'started'}}" bindtap="pause">
+        <image class="stop_pic" src="../images/stop.png"></image>
+    </view>
+</view>

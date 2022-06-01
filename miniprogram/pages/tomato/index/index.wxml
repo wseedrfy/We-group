@@ -1,0 +1,82 @@
+
+<!-- 新界面 1 -->
+<!-- 主页 -->
+<!-- <view class="bg" hidden="{{clockshow}}">
+   <view class="backto" bindtap="backto">返回</view> -->
+<!-- 上部分背景图片35.3% -->
+<!-- <view class="bgimage"></view>
+   <view class="nav-head1">
+       <view class="img-button feedback-btn" bindtap="statistics">
+       <image src="../../../images/tomato/tongji.png"></image>
+       </view>
+    </view>
+    <view class="nav-head2">
+       <view class="img-button feedback-btn" bindtap="rank">
+       <image src="../../../images/tomato/rank.png"></image>
+       </view>
+    </view> -->
+<!-- 下部分选择任务 -->
+<!-- <view class="taskbox"> -->
+<!-- 时间选择 -->
+<!-- <view class="taskbox_choice_time">
+         <image src="../../testdaka/images/tishi.png"></image>
+         <slider class="taskbox_choice_time_slider" min="1" max="120" show-value activeColor="#96cddd"
+      backgroundColor="#e5f2f6" value="{{time}}" bindchange="slideChange" block-color="#98ccde"></slider>
+         
+      </view>
+      <view class="taskbox_text">在接下来的{{time}}分钟内，您将专注做这件事</view> -->
+<!-- 选择任务 -->
+<!-- <view class="taskbox_choice_time_task_blue" wx:key="cate" 
+      bindtap="clickCate" data-index="{{index}}" wx:for="{{cateArr}}">
+         <view class="taskbox_choice_time_task_leftbox">
+            <view class="taskbox_choice_time_task_leftbox_icon">
+               <image src="../../../images/tomato/{{item.icon}}.png"></image>
+            </view>
+            <view class="{{index == cateActive ? 'taskbox_choice_time_task_leftbox_icontextchoice' : 'taskbox_choice_time_task_leftbox_icontext'}}"><view>{{item.text}}</view></view>
+         </view>
+         <view class="taskbox_choice_time_task_rightbox">
+            <image src="{{item.blue?'../../testdaka/images/blue.png':'../../testdaka/images/yellow.png'}}" bindtap="start">
+               <view class="taskbox_choice_time_task_rightbox_text">开始</view>
+            </image>
+         </view>
+      </view>
+   </view>
+</view> -->
+
+<!-- 新界面 2 -->
+<view class="timer {{isRuning ? 'timer--runing': ''}}">
+<view class="topbox">
+   <view class="topbox_topbar" style="height: {{statusBarHeight}}px;width: 100%;"></view>
+   <view class="topbox_bar" style="height: {{lineHeight}}px;">
+      <view class="topbox_bar_picker {{pickershow?'picker_bar':''}}">
+         <view bindtap="clickpicker">{{taskshow}}</view>
+         <view class="topbox_bar_picker_sanjiao" bindtap="clickpicker"></view>
+         <view class="topbox_bar_picker_box">
+            <view class="topbox_bar_picker_box_data" bindtap="pickerdata" data-task="{{item.name}}" wx:for="{{task}}" >{{item.name}}</view>
+         </view>
+      </view>
+      <image src="../../testdaka/images/log.png" bindtap="statistics"></image>
+      <image src="../../testdaka/images/rank.png" bindtap="rank"></image>
+   </view>
+   <view class="topbox_tips">
+      <view style="margin-top: 10rpx;text-align: center;color: white;font-size: 26rpx;">请滑动选择时间： {{time}}分钟</view>
+      <slider class="topbox_tips_slider" min="1" max="120" activeColor="#96cddd" backgroundColor="#e5f2f6" value="{{time}}" bindchange="slideChange" block-color="#98ccde"></slider>
+      <view style="width: 80%;color: white;font-size: 26rpx;margin-top: 20rpx;">Tips:</view>
+      <view style="width:80%;color: white;font-size: 26rpx;">点击左上角可以切换番茄任务</view>
+   </view>
+   <view class="topbox_btn">
+      <view class="topbox_btn_start" bindtap="start">{{ isRuning ? '放弃' : '开始计时' }}</view>
+      <view wx:if="{{pauseShow}}" bindtap="pause" class="topbox_btn_stop">暂停</view>
+      <view wx:if="{{continueCancelShow}}" bindtap="continue" class="topbox_btn_ct">继续</view>
+      <view wx:if="{{okShow}}" bindtap="ok" class="topbox_btn_complete">完成</view>
+   </view>
+</view>
+<view class="bottombox {{ isRuning ? 'bottomboxruning' : '' }} ">
+   <view class="bottombox_showtask ">{{taskshow}}</view>
+   <view class="bottombox_clock">
+      <canvas type="2d" id="bottombox_clock_bg" class="bottombox_clock_bg"></canvas>
+      <canvas type="2d" id="bottombox_clock_active" class="bottombox_clock_active"></canvas>
+      <view class="bottombox_clock_text" style="color: #5879fa;" >{{timeStr}}</view>
+   </view>
+</view>
+</view>

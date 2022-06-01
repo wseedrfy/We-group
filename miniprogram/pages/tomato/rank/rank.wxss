@@ -1,0 +1,65 @@
+.u-list .u-item .image{
+    float: left;
+    height: 100rpx;
+    width: 100rpx;
+    border-radius: 100%;
+    margin: 15rpx 15rpx 15rpx 15rpx;
+}
+.u-list .u-item .content{
+    width: 400rpx;
+    float: left;
+    height: 1rpx;
+    left: 1rpx;
+    margin: 25rpx 0rpx 15rpx 25rpx;
+    font-size:28rpx;
+}
+.u-list .u-item{
+    clear: left;
+    top: 10rpx;
+    border: 2rpx solid #d6d4d4; 
+}
+.u-list .u-item .toltaltime{
+    text-align: center;
+    width: 170rpx;
+    float:left;
+    margin:40rpx 5rpx 20rpx 0rpx;
+    color: #f19684;
+    font-size: 35.5rpx;
+    font-weight: 350;
+}
+.u-list .u-item .content .text .cup_top{
+    /* background-image: url('../../images/cup.png');
+    background-color: red; */
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: 6rpx;
+}
+.u-list .u-item .content .text .cup_later{
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: 6rpx;
+}
+.u-list .u-item .content .text .cup_top_text{
+    color: #eec83f;
+    font-weight: 800;
+    font-size: large;
+}
+.u-list .u-item .content .text .cup_later_text{
+    color: gray;
+    font-size: large;
+}
+.u-list .u-item .content .name{
+    color: gray;
+}
+@media (prefers-color-scheme: dark) {
+    .u-list .u-item .toltaltime {
+        filter: invert(1) !important;
+        color: rgb(172, 211, 254) ;
+    }
+    .u-list .u-item .content .text .cup_top_text {
+        filter: invert(1) !important;
+        color: rgb(172, 211, 254) ;
+    }
+  }

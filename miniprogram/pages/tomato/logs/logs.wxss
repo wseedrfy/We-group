@@ -1,0 +1,139 @@
+.sum {
+    display: flex;
+    flex-wrap: wrap;
+    width: 750rpx;
+    height: 350rpx;
+    border: 10rpx solid #eeeeee;
+}
+
+.sum .sum_item {
+    width: 375rpx;
+    height: 160;
+    text-align: center;
+}
+
+.sum .sum_item .sum_item_title {
+    height: 120rpx;
+    line-height: 120rpx;
+    font-size: 30rpx;
+    color: #6B747E;
+}
+
+.sum .sum_item .sum_item_val {
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #E7624F;
+}
+
+.detail {
+    width: 700rpx;
+    margin: 0 auto;
+}
+
+.detail_title {
+    display: flex;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.detail_title .detail_title_text {
+    flex: 1;
+    font-size: 35rpx;
+}
+
+.detail_title .detail_title_type {
+    flex: 1;
+    text-align: right;
+    font-size: 30rpx;
+}
+
+.detail_title .detail_title_type text {
+    margin-left: 10rpx;
+}
+
+.active {
+    color: #E7624F;
+}
+
+.list_item {
+    width: 100%;
+    display: flex;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin-top: 30rpx;
+}
+
+
+/* .list_item > view{
+  width: 200rpx;
+} */
+
+.list_item .list_item_date {
+    width: 40%;
+    font-size: 30rpx;
+    text-align: left;
+}
+.list_item .list_item_time {
+    width: 17%;
+    font-size: 35rpx;
+    text-align: right;
+}
+.list_item .list_item_text {
+    width: 43%;
+    text-align: right;
+}
+.start {
+    width: 280rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    margin: 40rpx auto;
+    border: 2rpx solid #E7624F;
+    color: #E7624F;
+    border-radius: 20rpx;
+    position: absolute;
+    bottom: 125rpx;
+    left: 235rpx;
+}
+.start2 {
+    width: 280rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    margin: 40rpx auto;
+    border: 2rpx solid #E7624F;
+    color: #E7624F;
+    border-radius: 20rpx;
+    position: absolute;
+    bottom: 0rpx;
+    left: 235rpx;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    padding: 20rpx;
+    background-color: white;
+    font-size: 30rpx;
+  }
+  .nav-switch-style{
+    color: #E7624F;
+  }
+  .ec_page .ec_box1{
+    height: 800rpx;
+    width: 100%;
+  }
+  .ec_page .ec_box2{
+    height: 800rpx;
+    width: 100%;
+  }
+  /* ec-canvas {
+    width: 800rpx;
+    height: 800rpx;
+    background-color: #E7624F;
+  } */
+  @media (prefers-color-scheme: dark) {
+    .sum .sum_item .sum_item_val,.active,.nav-switch-style{
+        filter: invert(1) !important;
+        color: rgb(172, 211, 254) ;
+    }
+  }

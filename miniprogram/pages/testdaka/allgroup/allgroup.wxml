@@ -1,0 +1,61 @@
+<!--pages/testdaka/allgroup/allgroup.wxml-->
+<view class="selfstudy">
+     <view style="height: {{statusBarHeight}}px;width: 100%;"></view>
+     <view class="selfstudy_bar"style="height: {{lineHeight}}px;line-height: {{lineHeight}}px;color: white;text-align: center;">
+          <view class="back" bindtap="back"></view>
+          <view class="allstudyroom">全部自习室</view>
+     </view>
+</view>
+<view class="selfstudy_othergroup_longbox">
+               <view class="selfstudy_othergroup_longbox_left"></view>
+               <view class="selfstudy_othergroup_longbox_right"></view>
+</view>
+<view class="selfstudy_othergroup_lablegroup">
+               <view class="selfstudy_othergroup_lablegroup_title" style="display: flex;flex-direction: row;margin: 0rpx auto;width: 660rpx;height:80rpx ;margin-bottom: 0;top: {{statusBarHeight + 38}}px;padding: 0 40rpx;">
+                    <view style="height: 80rpx;width: 50%;text-align: left;line-height: 80rpx;font-size: 28rpx;font-weight: 550;">最近创建/the latest</view>
+                    <view style="height: 80rpx;width: 50%;text-align: right;line-height: 80rpx;font-size: 23rpx;color: gray;" bindtap="more"></view>
+               </view>
+               <scroll-view class="lablegroup_scrollview" scroll-y="true">
+                    <view wx:for="{{room}}" class="lablegroup_scrollview_data"
+                     style="display: inline-block;">
+                         <view class="lablegroup_scrollview_data_image">
+                              <image src="{{item.imgUrl}}"></image>
+                         </view>
+                         <view class="lablegroup_scrollview_data_information">
+                              <view class="lablegroup_scrollview_data_information_topbox">
+                                   <view class="lablegroup_scrollview_data_information_topbox_roomname">
+                                   {{item.group_name}}
+                                   </view>
+                                   <view class="lablegroup_scrollview_data_information_topbox_roomintroduce">{{item.introduce}}
+                                   </view>
+                              </view>
+                              <view class="lablegroup_scrollview_data_information_bottombox">
+                                   <view class="lablegroup_scrollview_data_information_bottombox_left">
+                                        <view class="lablegroup_scrollview_data_information_bottombox_left_yuandia">
+                                        </view>
+                                        <view class="lablegroup_scrollview_data_information_bottombox_left_ring"></view>
+                                   </view>
+                                   <view class="lablegroup_scrollview_data_information_bottombox_right">
+                                        <view class="information_bottombox_right_url">
+                                             <view>
+                                             <view class="information_bottombox_right_url_image" style="background: pink;"></view>
+                                             <view class="information_bottombox_right_url_image"
+                                             style="background: powderblue;"></view>
+                                             <view class="information_bottombox_right_url_image"
+                                             style="background: purple;"></view>
+                                             <view class="information_bottombox_right_url_image"
+                                             style="background: rosybrown;"></view>
+                                             <view class="information_bottombox_right_url_image"
+                                             style="background: royalblue;"></view>
+                                             </view>
+                                        </view>
+                                        <view class="information_bottombox_right_numper">{{item.roomNum}}人</view>
+                                   </view>
+                              </view>
+                         </view> 
+                    </view>
+                    <view hidden="{{!loadMore}}" style="margin: 10rpx 50rpx;width: 650rpx;height: auto;text-align: center;">正在载入更多...</view>
+                    <view hidden="{{!loadAll}}" style="margin: 10rpx 50rpx;width: 650rpx;height: auto;text-align: center;">已加载全部</view>
+               </scroll-view>
+               <view style="width: 100%;height: 50rpx;"></view>
+</view>

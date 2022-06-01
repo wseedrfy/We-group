@@ -1,0 +1,351 @@
+page{
+    background-color:  #F4F4F4;
+
+}
+.bg{
+    background-color:  #F4F4F4;
+    /* height:1450rpx; */
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+.dakatop{
+    width: 690rpx;
+    height: 500rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx;
+    margin:0rpx 30rpx 20rpx 30rpx;
+    position: relative;
+    top: 40rpx;
+}
+.dakatop_box{
+    width: 630rpx;
+    height: 151.3rpx;
+    display: flex;
+    margin-left:30rpx;
+    border-bottom: 2rpx solid #E5E5E5;
+}
+.dakatop_box1{
+    width: 630rpx;
+    height: 151.3rpx;
+    /* background: yellow; */
+    position: absolute;
+    top: 151.3rpx;
+    left: 30rpx;
+    border-bottom: 2rpx solid #E5E5E5;
+}
+.dakatop_box2{
+    width: 630rpx;
+    height: 192.3rpx;
+    /* background: yellow; */
+    position: absolute;
+    top: 303rpx;
+    left: 30rpx;
+}
+.dakatop_box_image{
+    float: left;
+    width: 12.7%;
+    height: 56rpx;
+    width: 56rpx;
+    padding: 47.65rpx 0 47.65rpx 30rpx;
+}
+.dakatop_box_input{
+    float: left;
+    margin: 53rpx auto 53rpx 30rpx;
+    font-size: 31rpx;
+    font-weight: 500;
+}
+.dakatop_box2_image{
+    float: left;
+    width: 12.7%;
+    height: 56rpx;
+    width: 56rpx;
+    padding: 47.5rpx 0 30rpx 30rpx;
+}
+.dakatop_box2_input{
+    float: left;
+    width: auto;
+    height: 100%;
+    padding-left: 35rpx;
+}
+.dakatop_box2_input_left{
+    float: left;
+    width: 39.5%;
+    padding: 50.65rpx 0 ;
+}
+.dakatop_box2_input_image{
+    float: left;
+    width: 19%;
+    height: 26rpx;
+    width: 50rpx;
+    padding: 62.6rpx 23rpx;
+}
+.dakatop_box2_input_rigt{
+    float: left;
+    width: 40.5%;
+    padding: 50.65rpx 0;
+}
+.picker{
+    border: 2rpx solid #CCCCCC;
+    height: 50rpx ;
+    width: 190rpx;
+    float: right;
+    font-size: 24rpx;
+    font-weight: 400;
+    text-align: center;
+    line-height: 50rpx;
+
+}
+.picker2{
+    border: 2rpx solid #CCCCCC;
+    height: 50rpx ;
+    width: 190rpx;
+    font-size: 24rpx;
+    font-weight: 400;
+    text-align: center;
+    line-height: 50rpx;
+}
+.dakatop_cycle_image{
+    float: left;
+    width: 12.7%;
+    height: 56rpx;
+    width: 56rpx;
+    padding: 67.5rpx 0 67.5rpx 30rpx;
+}
+.dakatop_box2_cycle_checkbox{
+    width: 110%;
+}
+.dakatop_box2_cycle{
+    float: left;
+    width: 80%;
+    margin: 45rpx auto auto 16rpx;
+    font-size: 27.9rpx;
+    font-weight: 500;
+}
+.checkboxcycle{
+    /* transform: scale(0.9,0.9); 宽，高 */
+    zoom: 0.9;
+    padding: 11rpx 10rpx;
+}
+checkbox .wx-checkbox-input{
+    border-radius: 50%;/* 圆角 */
+    width: 46rpx; /* 背景的宽 */
+    height: 46rpx; /* 背景的高 */
+  }
+  /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+    border: 1rpx solid #74D5D3;
+    background: #74D5D3;
+  }
+  /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+    border-radius: 50%;/* 圆角 */
+    width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+    height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+    line-height: 40rpx;
+    text-align: center;
+    font-size:30rpx; /* 对勾大小 30rpx */
+    color:#fff; /* 对勾颜色 白色 */
+    background: transparent;
+    transform:translate(-50%, -50%) scale(1);
+    -webkit-transform:translate(-50%, -50%) scale(1);
+  }
+.dakacenter{
+    width: 690rpx;
+    height: 302.6rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx;
+    margin:0rpx 30rpx 20rpx 30rpx;
+    position: relative;
+    top: 40rpx;
+}
+.dakacenter_tag_image{
+    float: left;
+    height: 38rpx;
+    width: 38rpx;
+    padding: 54rpx 30rpx 50rpx 0;
+} 
+.dakacenter_tag_image2{
+    float: left;
+    height: 38rpx;
+    width: 38rpx;
+    padding: 54rpx 30rpx 50rpx 0;
+}
+.dakacenter_buttom{
+    width: 630rpx;
+    height: 151.3rpx;
+    position: relative;
+    left: 30rpx;
+}
+.dakacenter_buttom_topbox{
+    position: relative;
+    width: 100%;
+    height: 50%;
+}
+.dakacenter_buttom_topbox_right{
+    position: absolute;
+    left: 1rpx;
+    float: left;
+    width: 31rpx;
+    height: 38rpx;
+    margin: 35.5rpx 0rpx auto 32rpx;
+}
+.dakacenter_buttom_topbox_left{
+    position: absolute;
+    left: 64rpx;
+    float: left;
+    font-size: 29rpx;
+    font-weight: 400;
+    width: auto;
+    margin: 37rpx auto auto 12rpx;
+}
+.dakaconfirm{
+    width: 600rpx;
+    height: 80rpx;
+    background: #74D5D3;
+    border-radius: 40rpx;
+    position: absolute;
+    top:925rpx;
+    right:80rpx;
+
+}
+.dakaconfirm_button{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #74D5D3;
+    color: #FFFFFF;
+    font-size: 32rpx;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+.dakacancel{
+    width: 600rpx;
+    height: 80rpx;
+    border: 2rpx solid #F77A7A;
+    border-radius: 40rpx;
+    position: absolute;
+    top: 1045rpx;
+    right: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #F77A7A;
+}
+.dakacenter_buttom_buttombox{
+    width: 550rpx;
+    height: 50%;
+    position: absolute;
+    left: 80rpx;
+}
+.checkbox{
+    display:inline-block;
+    padding:5rpx 10rpx 6rpx 10rpx;
+    background:#eee;
+    border-radius: 4px;
+
+    padding:5rpx 10rpx 6rpx 10rpx;
+    margin:10rpx auto auto 30rpx;
+    font-weight: 500;
+    font-size: 25rpx;
+}
+.checkboxcheckedActive{
+    display:inline-block;
+    padding:5rpx 10rpx 6rpx 10rpx;
+    background:#eee;
+    border-radius: 4px;
+    background:#F77A7A;
+    color:#fff;
+
+    margin:10rpx auto auto 30rpx;
+    font-weight: 500;
+    font-size: 25rpx;
+}
+.dakatop_box_input_2{
+    float: left;
+    width: auto;
+    margin: 53rpx auto 53rpx 30rpx;
+    font-size: 31rpx;
+    font-weight: 500;
+}
+.bqpicker{
+    height: 50rpx ;
+    float: right;
+    font-size: 31rpx;
+    font-weight: 400;
+    line-height: 40rpx;
+    width: 300rpx;
+}
+.meibq{
+    height: 50rpx ;
+    float: right;
+    font-size: 31rpx;
+    font-weight: 400;
+    line-height: 40rpx;
+    width: 300rpx;
+    color: gray;
+}
+
+
+  .dakaconfirm_button_abc {
+    width: 600rpx;
+    height: 100%;
+    text-align: center;
+    background: #74D5D3;
+    color: #FFFFFF;
+    font-size: 32rpx;
+    font-weight: 500;
+    box-sizing: border-box;
+    size: 100%;
+    border-radius: 40rpx;
+}
+button:not([size=mini]) {
+    margin-left: auto;
+    margin-right: auto;
+    width: 600rpx;
+}
+@media (prefers-color-scheme: dark) {
+    .dakacancel{
+        filter: invert(1) !important;
+        color:gray;
+         /* #74D5D3; */
+        border: 2rpx solid gray;
+    }
+    /* #74D5D3 绿*/
+    /* #F77A7A 红*/
+    checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+        filter: invert(1) !important;
+        border: 1rpx solid rgb(172, 211, 254);
+        background: rgb(172, 211, 254);
+        color: #fff;
+    }
+    .dakatop_box_input_placeholder{
+        color: gray;
+    }
+    .dakaconfirm_button_abc{
+        filter: invert(90%) !important;
+        background: rgb(172, 211, 254);
+    }
+    .dakatop_box_input{
+        filter: invert(1) !important;
+        color: white;
+        /* caret-color: red; */
+    }
+    checkbox .wx-checkbox-input{
+        filter: invert(1) !important;
+        background: gray;
+    }
+    .dakatop_box_image,.dakatop_box2_image,.dakatop_cycle_image{
+        filter: invert(30%) !important;
+    }
+    .dakacenter_buttom_topbox_right {
+        filter: invert(70%) !important;
+    }
+    .checkboxcheckedActive{
+        filter: invert(90%) !important;
+    }
+    /* .dakatop_box_input{
+        color: black;
+    } */
+  }

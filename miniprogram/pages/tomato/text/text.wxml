@@ -1,0 +1,41 @@
+<!-- 导航条 -->
+<view class="nav">
+  <view bindtap="navSwitch" data-index="0" class="{{navState==0 ? 'nav-switch-style':''}}">页面一</view>
+  <view bindtap="navSwitch" data-index="1" class="{{navState==1 ? 'nav-switch-style':''}}">页面二</view>
+  <view bindtap="navSwitch" data-index="2" class="{{navState==2 ? 'nav-switch-style':''}}">页面三</view>
+</view>
+<!-- 不可滑动页 -->
+<view>
+  <view wx:if="{{navState==0}}" class="style-default">
+    <!-- <ec-canvas type="2d" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas> -->
+  </view>
+  <view wx:elif="{{navState==1}}" class="style-default">
+    <!-- <ec-canvas type="2d" id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas> -->
+  </view>
+  <view wx:else="{{navState==2}}" class="style-default">3</view>
+</view>
+<!-- 滑动页 -->
+<swiper bindchange="bindchange" current="{{navState}}" class="box" duration="500">
+
+    <swiper-item style="width: {{canvas_width}}px;height: {{canvas_width+30}}px;">
+      <view class="style-roll">
+        <ec-canvas type="2d" id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}"></ec-canvas>
+        <text>左右可滑动1</text>
+      </view>
+    </swiper-item>
+
+    <swiper-item style="width: {{canvas_width}}px;height: {{canvas_width+30}}px;">
+      <view class="style-roll">
+        <ec-canvas type="2d" id="mychart-dom-multi-bar" canvas-id="mychart-multi-bar" ec="{{ ecBar }}"></ec-canvas>
+        <text>左右可滑动2</text>
+      </view>
+    </swiper-item>
+
+    <swiper-item>
+      <view class="style-roll">
+        <text>左右可滑动3</text>
+      </view>
+    </swiper-item>
+
+</swiper>
+

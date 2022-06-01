@@ -1,0 +1,365 @@
+<!-- 主页 -->
+<view wx:if="{{navState==0}}" animation="{{timetableAnimation}}">
+     <view>
+          <view class="top" style="height: {{statusBarHeight}}px;width: 100%;background: #7c66f5;">
+          </view>
+          <view class="top2" style="height: {{lineHeight}}px;background: #7c66f5;line-height: {{lineHeight}}px;color: white;text-align: center;display: flex;align-items: center;flex-direction: row;">
+                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 30rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
+                <view style="padding-left: 245rpx;font-size: 34rpx;">We打卡</view>
+          </view>
+          <calendar bind:change="dateChange" spot="{{spot}}" week="{{week}}" defaultTime="{{today}}"></calendar>
+     </view>
+     <view class="bg">
+          <view class="dayclock">
+               <!-- 头部，我的每日打卡 -->
+               <view class="dayclock_title">
+                    <view class="dayclock_column">
+                         <image bindtap="attention" class="dayclock_column_left" src="../images/tishi.png"></image>
+                    </view>
+                    <view class="dayclock_column">
+                         <view class="dayclock_column_center">我的每日打卡</view>
+                    </view>
+                    <view class="dayclock_column">
+                         <image class="dayclock_column_right" src="../images/tianjia.png" bindtap="add_task"></image>
+                    </view>
+               </view>
+               <!-- 装渲染数据的最外层盒子 -->
+               <view class="dayclock_data" wx:for="{{taskdata}}" wx:key="*this">
+                    <!-- 背景层 删除键#F4F4F4 -->
+                    <view class="dayclock_data_huadong_bg">
+                         <view class="dayclock_data_huadong_bg_bg">
+                              <view id="{{index}}" class="dayclock_data_huadong_bg_del" catchtap="daka_delpromp">删除
+                              </view>
+                         </view>
+                    </view>
+                    <!--左右滑动画层 -->
+                    <view class="dayclock_data_huadong" bindtouchstart="touchstartX" bindtap="resetX" bindtouchmove="touchmoveX" bindtouchend="touchendX" animation="{{currentIndex === index ?animation : ''}}" data-index="{{index}}">
+                         <view class="border">
+                              <!--左右滑动画层--右滑打卡盒子 -->
+                              <view id="{{index}}" data-id="{{index}}" class="{{item.task_isDaka==true?  'operationBgBoxtrue' : 'operationBgBox'}}" style="left: {{ -(w + 2) }}px; transform: {{ currentIndex == index ?cssAnimation:'' }};background:{{item.task_isDaka==true?  '#fff' : ''}};">
+                                   <text>{{ succeedMsg }}</text>
+                                   <!-- 右滑盒子 -->
+                                   <view id="{{index}}" style="background:{{item.task_isDaka==true?  '#fff' : ''}};" class="{{item.task_isDaka==true?  'operationBoxtrue' : 'operationBox'}}" catchtouchstart="startFun" catchtouchmove='moveFun' catchtouchend='endFun'>
+                                        <image src="{{item.task_isDaka==true?  '../images/complete.png' : '../images/right.png'}} ">
+                                        </image>
+                                   </view>
+                              </view>
+                              <!-- 左右滑动画层--中间盒子显示打卡信息 -->
+                              <!-- style="color: {{ item.task_isDaka==true?  '#74D5D3' : ''}};" -->
+                              <view class="dayclock_data_column_3">
+                                   <view class="{{ item.task_isDaka==true?  'dayclock_data_column_text_true' : 'dayclock_data_column_text_false'}}">
+                                        {{item.task_isDaka==true?'已完成':'待完成'}}</view>
+                              </view>
+                              <!-- 左右滑动画层--右边盒子显示是否完成 -->
+                              <view class="dayclock_data_column_2">
+                                   <view class="dayclock_data_column_2_task" data-task="{{item.task_name}}" bindtap="12345">{{item.task_name}}</view>
+                                   <view class="dayclock_data_column_2_cycle">
+                                        <view class="dayclock_data_column_2_cycle_week">{{item.task_cycle}}</view>
+                                        <view class="dayclock_data_column_2_cycle_time">{{item.task_start_time}}</view>
+                                        <view class="dayclock_data_column_2_cycle_time">- {{item.task_end_time}}</view>
+                                   </view>
+                              </view>
+                         </view>
+                    </view>
+               </view>
+               <view class="dayclock_bottom"></view>
+          </view>
+     </view>
+</view>
+<!-- 个人信息栏滑动界面 -->
+<view class="slide" animation="{{curriLeft}}" wx:if="{{isAnimate_ke}}" bindtouchstart="touchStartCurri_ke" bindtouchmove="touchMoveCurri_ke" bindtouchend="touchEndCurri_ke">
+     <view class="head">
+          <image class="head_pic" src="../../../images/about/long.jpg" />
+          <view class="head_name">{{name_ke}}</view>
+          <view class="head_line"></view>
+     </view>
+     <view class="data">
+          <view class="data_frequence">
+               <image class="data_frequence_pic" src="../images/frequence.png" />
+               <view class="dd">
+                    <view class="data_frequence_txt">{{txt_frequence_ke}}</view>
+                    <view class="frequence_data">{{frequence_ke}}</view>
+               </view>
+          </view>
+          <view class="data_group_num">
+               <image class="data_group_num_pic" src="../images/group.png" />
+               <view class="dd">
+                    <view class="data_group_num_txt">{{txt_groupNum_ke}}</view>
+                    <view class="data_group_num_data">{{groupNum_ke}}</view>
+               </view>
+          </view>
+          <view class="data_hours">
+               <!-- <image class="data_hours_pic" src="../images/时间.png" /> -->
+               <view class="data_hours_txt">{{txt_hours_ke}}</view>
+               <view class="hours">{{hours_ke}}</view>
+               <view class="convert">详情</view>
+               <image class="goto" src="../images/next_step.png" />
+          </view>
+     </view>
+     <view class="tail">
+          <image class="about" src="../images/about_ke.png" />
+          <image class="exit" bindtap="seetingHandler" src="../images/exit_ke.png" />
+     </view>
+</view>
+
+<!-- 打卡页 -->
+<view wx:elif="{{navState==1}}"></view>
+<!-- 计时页 -->
+<view wx:elif="{{navState==2}}">
+     <view class="timer {{isRuning ? 'timer--runing': ''}}">
+          <view class="topbox">
+               <view class="topbox_topbar" style="height: {{statusBarHeight}}px;width: 100%;"></view>
+               <view class="topbox_bar" style="height: {{lineHeight}}px;">
+                    <view class="topbox_bar_picker {{pickershow?'picker_bar':''}}">
+                         <view bindtap="clickpicker">{{taskshow}}</view>
+                         <view class="topbox_bar_picker_sanjiao" bindtap="clickpicker"></view>
+                         <view class="topbox_bar_picker_box">
+                              <view class="topbox_bar_picker_box_data" bindtap="pickerdata" data-task="{{item.task_name}}" wx:for="{{taskdata}}">{{item.task_name}}</view>
+                         </view>
+                    </view>
+                    <image src="../../testdaka/images/log.png" bindtap="statistics"></image>
+                    <image src="../../testdaka/images/rank.png" bindtap="rank"></image>
+               </view>
+               <view class="topbox_tips">
+                    <view style="margin-top: 10rpx;text-align: center;color: white;font-size: 26rpx;">请滑动选择时间：
+                         {{time}}分钟</view>
+                    <slider class="topbox_tips_slider" min="1" max="120" activeColor="#96cddd" backgroundColor="#e5f2f6" value="{{time}}" bindchange="slideChange" block-color="#98ccde"></slider>
+                    <view style="width: 80%;color: white;font-size: 26rpx;margin-top: 20rpx;">Tips:</view>
+                    <view style="width:80%;color: white;font-size: 26rpx; margin-top: 15rpx;">点击左上角番茄时钟可以切换番茄任务</view>
+                    <view style="width:80%;color: white;font-size: 26rpx;margin-top: 15rpx;">左上角可以进入数据统计页面</view>
+                    <view style="width:80%;color: white;font-size: 26rpx;margin-top: 15rpx;">左上角可以进入排行榜页面</view>
+               </view>
+               <view class="topbox_btn">
+                    <view class="topbox_btn_start" bindtap="start">{{ isRuning ? '放弃' : '开始计时' }}</view>
+                    <view wx:if="{{pauseShow}}" bindtap="pause" class="topbox_btn_stop">暂停</view>
+                    <view wx:if="{{continueCancelShow}}" bindtap="continue" class="topbox_btn_ct">继续</view>
+                    <view wx:if="{{okShow}}" bindtap="ok" class="topbox_btn_complete">完成</view>
+               </view>
+          </view>
+          <view class="bottombox {{ isRuning ? 'bottomboxruning' : '' }} ">
+               <view class="bottombox_showtask ">{{taskshow}}</view>
+               <view class="bottombox_clock">
+                    <canvas type="2d" id="bottombox_clock_bg" class="bottombox_clock_bg"></canvas>
+                    <canvas type="2d" id="bottombox_clock_active" class="bottombox_clock_active"></canvas>
+                    <view class="bottombox_clock_text">{{timeStr}}</view>
+               </view>
+          </view>
+     </view>
+</view>
+<!-- 云留言页 --> 
+<view wx:elif="{{navState==3}}"></view>
+<!-- 小组页 -->
+<view wx:elif="{{navState==4}}">
+     <!-- 顶部导航栏 -->
+     <view class="selfstudy">
+          <view style="height: {{statusBarHeight}}px;width: 100%;background: white;"></view>
+          <view class="selfstudy_bar" style="height: {{lineHeight}}px;background: white;line-height: {{lineHeight}}px;color: white;text-align: center;">
+               <!-- <view data-index="8" class="{{studynavState==8?'topbar_true':'topbar' }}" bindtap="navclick">我的任务</view> -->
+               <view data-index="5" wx:if="{{audit}}" class="{{studynavState==5?'topbar_true':'topbar' }}" bindtap="navclick">我的小组</view>
+               <view data-index="6" class="{{studynavState==6?'topbar_true':'topbar' }}" bindtap="navclick">其他小组</view>
+               <!-- <view data-index="7" class="{{studynavState==7?'topbar_true':'topbar' }}" bindtap="navclick">计时</view> -->
+          </view>
+     </view>
+     <!-- 我的小组 -->
+     <view wx:if="{{studynavState==5}}">
+        <view class="inputBox"></view>
+        <view class="Group">
+          <view class="myGroup" data-index="{{index}}" wx:for="{{myGroupArr}}" bindtap="myGroup">
+            <image class="myGroup_image" src="{{item.bgurl}}"></image>
+            <view class="myGroup_groupName">{{item.groupName}}</view>
+            <view class="myGroup_groupUser">
+              <view class="myGroup_groupUser_name">{{item.wxname}}</view>
+              <image class="myGroup_groupUser_url" src="{{item.wxurl}}"></image>
+            </view>
+          </view>
+          <view class="creatGroup">
+            <view class="creatGroup_text">创立专属小组建设优质社群</view> 
+            <view class="creatGroup_buttom">
+              <!-- <image></image> -->
+              <view bindtap="goToCreateRoom">创建小组</view>  
+            </view>
+          </view>
+        </view>
+        <view style="width: 100vw;height: 200rpx;"></view> 
+     </view>
+     <!-- 我的任务 -->
+     <!-- <view class="new_wrap" wx:elif="{{studynavState==8}}">
+     </view> -->
+     <!-- 其他小组 -->
+     <view wx:elif="{{studynavState==6}}" class="selfstudy_othergroup">
+          <!-- 这个是滑动卡片 -->
+          <!-- <view class="selfstudy_othergroup_title">
+               <view bindtouchstart="cardtouchstart" bindtouchmove="cardtouchmove" bindtouchend="cardtouchend" animation="{{id === 0 ? animationData : '' }}" class="selfstudy_othergroup_title_card card{{ id + 1}}" wx:for="{{cardlist}}" wx:key="unique" wx:for-index="id" wx:for-item="item" data-abc="{{ id === 0 }}">
+                    <view>{{item.cardname}}让我们一起加入小组吧</view>
+                    <view></view>
+               </view>
+          </view> -->
+          <view class="selfstudy_othergroup_longbox" style="box-shadow: 0rpx 10rpx 15rpx 0.1rpx rgb(228, 228, 228);border-radius: 50rpx;" bindtap="more">
+               <view class="selfstudy_othergroup_longbox_left" style="display: flex;align-items: center;"bindtap="getmember"><view style="letter-spacing: 5rpx;font-size: 26rpx;margin-left: 60rpx;">查看全部小组</view></view>
+               <view class="selfstudy_othergroup_longbox_right" bindtap="getmember"></view>
+          </view>
+          <view class="selfstudy_othergroup_mygroup">
+               <view style="display: flex;flex-direction: row;margin: 41rpx auto;width: 650rpx;height:80rpx ;margin-bottom: 0;">
+                    <view style="height: 80rpx;width: 50%;text-align: left;line-height: 80rpx;font-size: 28rpx;font-weight: 550;">我的自习室</view>
+                    <view style="height: 80rpx;width: 50%;text-align: right;line-height: 80rpx;font-size: 23rpx;color: gray;">右滑查看更多</view>
+               </view>
+               <scroll-view class="mygroup_scrollview" scroll-x="true" style=" display: flex">
+                    <view wx:for="{{myroomlist}}" class="mygroup_scrollview_data" style="display: inline-block;">
+                         <view class="mygroup_scrollview_data_topbox">
+                              <image src="{{item.imageurl}}"></image>
+                         </view>
+                         <view class="mygroup_scrollview_data_bottombox">
+                              <view class="mygroup_scrollview_data_bottombox_left">
+                                   <view class="mygroup_scrollview_data_bottombox_left_roomname">
+                                        <view>{{item.roomname}}</view>
+                                   </view>
+                                   <view class="mygroup_scrollview_data_bottombox_left_introduce">
+                                        <view>{{item.roomintroduce}}</view>
+                                   </view>
+                              </view>
+                              <view class="mygroup_scrollview_data_bottombox_right">
+                                   <view></view>
+                              </view>
+                         </view>
+                    </view>
+               </scroll-view>
+          </view>
+          <view class="selfstudy_othergroup_lablegroup" wx:for="{{room}}" wx:key="index"  data-roomlable="{{item.roomlable}}" data-roomindex="{{index}}" bindtap="getRoomlable"> 
+               <view style="display: flex;flex-direction: row;margin: 0rpx auto;width: 650rpx;height:80rpx ;margin-bottom: 0;">
+                    <view style="height: 80rpx;width: 50%;text-align: left;line-height: 80rpx;font-size: 28rpx;font-weight: 550;">{{item.roomlable}}</view> 
+                    <view style="height: 80rpx;width: 50%;text-align: right;line-height: 80rpx;font-size: 23rpx;color: gray;" bindtap="more">see more</view>
+               </view> 
+               <scroll-view class="lablegroup_scrollview" scroll-x="true" style=" display: flex;white-space: nowrap;">   
+                    <view data-group_name="{{item.group_name}}" data-roomlistindex="{{index}}" wx:for="{{item.roomlist}}" wx:key="index"  class="lablegroup_scrollview_data" style="display: inline-block;" bindtap="intoshowgroup">
+                         <view class="lablegroup_scrollview_data_image">
+                              <image src="{{item.imgUrl}}"></image>
+                         </view>
+                         <view class="lablegroup_scrollview_data_information">
+                              <view class="lablegroup_scrollview_data_information_topbox">
+                                   <view class="lablegroup_scrollview_data_information_topbox_roomname">
+                                        {{item.group_name}}
+                                   </view>
+                                   <view class="lablegroup_scrollview_data_information_topbox_roomintroduce">{{item.introduce}}
+                                   </view>
+                              </view>
+                              <view class="lablegroup_scrollview_data_information_bottombox">
+                                   <view class="lablegroup_scrollview_data_information_bottombox_left">
+                                        <view class="lablegroup_scrollview_data_information_bottombox_left_yuandia">
+                                        </view>
+                                        <view class="lablegroup_scrollview_data_information_bottombox_left_ring"></view>
+                                   </view>
+                                   <view class="lablegroup_scrollview_data_information_bottombox_right">
+                                        <view class="information_bottombox_right_url">
+                                             <view>
+                                                  <view class="information_bottombox_right_url_image" style="background: pink;"></view>
+                                                  <view class="information_bottombox_right_url_image" style="background: powderblue;"></view>
+                                                  <view class="information_bottombox_right_url_image" style="background: purple;"></view>
+                                                  <view class="information_bottombox_right_url_image" style="background: rosybrown;"></view>
+                                                  <view class="information_bottombox_right_url_image" style="background: royalblue;"></view>
+                                             </view>
+                                        </view>
+                                        <view class="information_bottombox_right_numper">{{item.roomNum}}人</view>
+                                   </view>
+                              </view>
+                         </view>
+                    </view>
+               </scroll-view>
+          </view>
+          <view style="width: 100%;height: 200rpx;"></view>
+          <!-- 小组弹窗 -->
+          <view class="{{showgroup?'showgroup':'showgroup_close'}}">
+               <view class="{{showgroup?'showgroup_box':'showgroup_box_close'}}">
+                    <view class="showgroup_box_title">{{showgroup.group_name}}
+                         <view bindtap="tuishowgroup" style="width: 50rpx;height: 50rpx;float: right;line-height: 50rpx;text-align: center;position: absolute;right: 20rpx;">×</view>
+                    </view>
+                    <view class="showgroup_box_introduce">{{showgroup.introduce}}</view>
+                    <view class="showgroup_box_prenum">
+                         <!-- <image></image> -->
+                         <view>{{showgroup.peo}}</view>
+                         <view>/{{showgroup.roomNum}}</view> 
+                    </view>
+                    <view class="showgroup_box_uuid">组长：{{showgroup.wxname}}</view>
+                    <view class="showgroup_box_uuid">小组id：{{showgroup.uuid}}</view>
+                    <view class="showgroup_box_userimage">
+                         <view>自习室成员</view>
+                         <view class="showgroup_box_userimage_box">
+                              <!-- 成员 -->
+                              <view class="showgroup_box_userimage_groupMember" wx:for="{{showgroup.groupMember}}">
+                                   <image class="showgroup_box_userimage_groupMember_image" src="{{item.member_url}}"></image>
+                                   <view></view>
+                              </view>
+                              <!-- 加号 -->
+                              <view class="showgroup_box_userimage_add" bindtap="joinGroup">
+                                   <image class="showgroup_box_userimage_add_image" src="../images/addmember.png"></image>
+                                   <view></view>
+                              </view>
+                         </view>
+                    </view>
+                    <view class="showgroup_box_turninto">
+                         <view bindtap="joinGroup">加入该小组</view>
+                    </view>
+               </view>
+          </view>
+     </view>
+     <!-- 自习室计时 --> 
+     <!-- <view wx:elif="{{studynavState==7}}">
+
+
+     </view> -->
+</view>
+<!-- 生成图片弹窗 -->
+<view class="complete" wx:if="{{showModel2}}">
+     <view class="complete_bg"></view>
+     <view class="complete_share">
+          <canvas type="2d" class="complete_share_image" id="shareCanvas"></canvas>
+          <view class="complete_share_box">
+               <view class="complete_share_box_button" bindtap="savecanvas">校友圈一键分享</view>
+               <!-- <view class="complete_share_box_button" bindtap="sharecanvas_new">绘图</view> -->
+          </view>
+     </view>
+     <image class="complete_share_close" bindtap="complete_share_close" src="../images/close.png"></image>
+</view>
+<!-- 使用说明弹窗 -->
+<view class="attention" wx:if="{{showModel3}}">
+     <view class="attention_bg"></view>
+     <view class="attention_text">
+          <view class="attention_text_title">使用注意</view>
+          <view class="attention_text_duanluo">
+               <view>1.当新建一个打卡任务时，除了热度榜里的标签可自行选择之外，其他记录打卡的信息都要填写。</view>
+               <view>2.对于同一任务，不能一天打卡两次或以上。</view>
+               <view>注意事项：如发生显示问题，请尝试着刷新页面重新加载。</view>
+          </view>
+     </view>
+     <image class="attention_close" src="../images/close.png" bindtap="attention"></image>
+</view>
+<!-- 底部导航栏 -->
+<view class="{{isRuning ? 'tabBar_running': 'tabBar'}}">
+     <view class="tabBar_ring">
+          <!-- 番茄时钟入口 -->
+          <!-- <image src="../images/rank.png" class="img-style" animation="{{animCollect}}" bindtap="collect"></image> -->
+          <!-- <image src="../images/time.png" class="img-style" animation="{{animTranspond}}" bindtap="transpond"></image> -->
+          <!-- <image src="../images/log.png" class="img-style" animation="{{animInput}}" bindtap="input"></image> -->
+          <image src="../images/time_2.png" data-index="2" class="img-plus-style" animation="{{animPlus}}" bindtap="plus"></image>
+          <!-- <text class="text_time">计时</text> -->
+     </view>
+     <view class="icon">
+          <view class="icon_a" data-index="0" bindtap="click_a">
+               <image class="icon_left" src="{{click_a ? '../images/rili.png' : '../images/rini.png'}}"></image>
+               <view class="{{click_a?'icon_left icon_text':'icon_left icon_text_false'}}">主页</view>
+          </view>
+          <view class="icon_a" data-index="1" bindtap="click_b">
+               <image class="icon_left_2" src="{{click_b ?' ../images/fenlei(1).png  ': '../images/fenlei.png'}}">
+               </image>
+               <view class="{{click_b?'icon_left_2 icon_text':'icon_left_2 icon_text_false'}}">打卡</view>
+          </view>
+          <view class="icon_a" data-index="3" bindtap="click_c">
+               <image class="icon_right_2" src="{{click_c ?'../images/yun(1).png': '../images/yun.png'}}"></image>
+               <view class="{{click_c?'icon_right_2 icon_text':'icon_right_2 icon_text_false'}}">云留言</view>
+          </view>
+          <view class="icon_a" data-index="4" bindtap="click_d">
+               <image class="icon_right" src="{{click_d ?'../images/pinktu(1).png': '../images/pinktu.png'}}"></image>
+               <view class="{{click_d?'icon_right icon_text':'icon_right icon_text_false'}}">小组</view>
+          </view>
+     </view>
+</view>
+
