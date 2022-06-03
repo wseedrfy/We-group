@@ -21,7 +21,7 @@ App({
         success: function (res) {
           if (!res.cancel) {
             wx.redirectTo({
-              url: '/pages/login/login'
+              url: '/pages/login/index/index'
             })
           } else {
             wx.navigateBack({})
@@ -33,13 +33,14 @@ App({
 
 
   onLaunch() {
-    let new_args = {
-      username:"20034480214",
-      nickName:"Start from scratch",
-      iconUrl:"https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132",
-      tabitem:["全部","日常","开学季","打卡"],
-    }
-    wx.setStorageSync('args', new_args)
+//     let new_args = {
+//       username:"20034480214",
+//       nickName:"Start from scratch",
+//       iconUrl:"https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132",
+//       tabitem:["全部","日常","开学季","打卡"],
+//     }
+//     wx.setStorageSync('args', new_args)
+    this.loginState()
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {

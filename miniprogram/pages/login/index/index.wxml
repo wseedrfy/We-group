@@ -1,8 +1,8 @@
 <view style="height: {{statusBarHeight}}px;width: 100vw;"></view>
 <view style="height: {{lineHeight}}px;width: 100vw;display: flex;align-items: center;">
-    <image class="backimage" src="../images/back.png"></image>
+    <image class="backimage" src="../images/back.png" bindtap="back"></image>
 </view>
-<view class="topbox"><view class="topbox_text">登录</view></view>
+<view class="topbox"><view class="topbox_text" >登录</view></view>
 <view class="inputbox">
     <view class="inputbox_topbox">
         <view class="inputbox_topbox_1">账号</view>
@@ -12,17 +12,17 @@
         <view class="inputbox_centerbox_1">密码</view>
         <input bindinput="pwd" class="inputbox_centerbox_2" password="{{click}}" type="text"/>
         <view class="inputbox_centerbox_3" bindtap="click">
-        <image src="{{click?'../images/close.png':'../images/look.png'}}"></image>
+        <image src="{{click?'../images/close.png':'../images/look.png'}}" ></image>
         </view>
     </view>
     <view class="inputbox_bottombox">
-        <view class="inputbox_bottombox_text" style="color: #b1b1b1;">忘记密码?</view>
+        <!-- <view class="inputbox_bottombox_text" style="color: #b1b1b1;">忘记密码?</view> -->
     </view>
 </view>
 <view class="buttonbox">
-    <view class="buttonbox_box">登录</view>
+    <view class="buttonbox_box" style="background-color: #7c66f5;" bindtap="login">登录</view>
 </view>
 <view class="bottombox">
     <view class="bottombox_box1">还没有账号？</view>
-    <view class="bottombox_box2">注销</view>
+    <view class="bottombox_box2" style="color: #7c66f5;" bindtap="register">注册</view>
 </view>

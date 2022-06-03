@@ -1,6 +1,7 @@
 /**index.wxss**/
 page{
-    background: #f7f7f7;
+    /* background: #f7f7f7; */
+    background-image: linear-gradient(to bottom, #8571f7 6%, #ffffff 40% , #ffffff 55%, #ffffff 100%);
 }
 .backimage{
     height: 35rpx;
@@ -17,6 +18,7 @@ page{
     font-size: 55rpx;
     margin-top: 40rpx;
     margin-left: 55rpx;
+    color: #ffffff;
 }
 .inputbox{
     width: 100vw;
