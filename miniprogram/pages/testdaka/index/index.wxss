@@ -1347,6 +1347,7 @@ wx-slider .wx-slider-handle-wrapper {
   position: absolute;
 }
 .selfstudy_othergroup_title_card{
+  
 }
 .selfstudy_othergroup_title_card.card1{
   background: white;

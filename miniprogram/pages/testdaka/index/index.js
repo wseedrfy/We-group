@@ -2023,12 +2023,13 @@ Page({
     })
   },
 
+  //请愿|许愿内容
   ke_write(e) {
     this.setData({
       apply_text: e.detail.value
     })
   },
-
+//请愿|许愿提交
   apply(e) {
     if (!this.data.apply_text || this.data.apply_text == '') {
       wx.showToast({
@@ -2042,7 +2043,7 @@ Page({
       })
     }
   },
-
+//请愿|许愿取消
   cancel(e) {
     this.setData({
       ke_click: false,
