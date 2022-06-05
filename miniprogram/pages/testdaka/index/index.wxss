@@ -1,6 +1,8 @@
 /* pages/testdaka/index/index.wxss */
 page {
   background-color: #ffffff;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .date-string {
@@ -45,7 +47,7 @@ page {
 /* 个人信息栏右滑动 头*/
 .slide{
   position: absolute;
-  left: -270px;
+  left: -500px;
   top: 20px;
   z-index: 9;
   background: -webkit-linear-gradient(#1B2347, #3C3E67, #615B8B, #8A7CB7);
@@ -242,30 +244,32 @@ page {
 
 .Wish_Wall {
   background: -webkit-linear-gradient(#1B2347, #3C3E67, #615B8B, #8A7CB7);
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 160px;
+  height: 300rpx;
 }
 
 .head_btn {
-  margin-top: 100px;
+  margin-top: 190rpx;
   display: flex;
   flex-direction: row;
 
   align-items: center;
-  width: 200px;
-  height: 28px;
-  border-radius: 20px;
-  margin-bottom: 10px;
+  width: 200rpx;
+  /* height: 28rpx; */
+  border-radius: 20rpx;
+  margin-bottom: 10rpx;
 }
 
 .btn_2 {
-  font-size: 20px;
+  font-size: 30rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -278,22 +282,21 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 25rpx;
   background: #ffffff;
   color: #004db5;
-  border-radius: 20px;
-  width: 150px;
-  height: 24px;
+  border-radius: 27rpx;
+  width: 250rpx;
+  height:  40rpx;
   box-shadow: 0.1rpx 0.1rpx 10rpx 0.1rpx rgba(228, 228, 228, 0.384);
   border: 1px outset #ffffff;
 }
 
 .apply {
-  margin-top: 470px;
-  position: absolute;
+  margin-top: 400rpx;
   background: #ffffff;
-  border-radius: 20px;
-  height: 650rpx;
+  border-radius: 25rpx;
+  height: 620rpx;
   z-index: 9999;
 }
 
@@ -303,46 +306,45 @@ page {
   align-items: center;
   background: #EFEFEF;
   font-size: 35rpx;
-  height: 180px;
-  margin: 15px 10px 10px 10px;
-  border-radius: 20px;
+  height: 280rpx;
+  margin: 30rpx 20rpx 20rpx 20rpx;
+  border-radius: 25rpx;
 }
 
 .apply_txt {
-  margin-top: 20px;
+  margin-top: 40rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 25rpx;
 }
 
 .btn_apply {
-  margin: 20px 20px 10px 20px;
+  margin: 30rpx 30rpx 20rpx 30rpx;
   background: #EFF1FD;
   font-weight: bold;
   color: #8FBACE;
-  height: 40px;
+  height: 70rpx;
   display: flex;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 25rpx;
   align-items: center;
 }
 
 .btn_cancel {
-  margin: 10px 20px 10px 20px;
+  margin: 30rpx 30rpx 20rpx 30rpx;
   background: #EFF1FD;
   font-weight: bold;
   color: #8FBACE;
-  height: 40px;
+  height: 70rpx;
   display: flex;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 25rpx;
   align-items: center;
 }
 
 .container {
   position: relative;
-  height: 1400rpx;
 }
 
 .top {
@@ -367,7 +369,7 @@ page {
   line-height: 50rpx;
   padding: 0 15rpx 0 15rpx;
   background: #ffffff25;
-  border-radius: 20px;
+  border-radius: 25rpx;
   /* overflow: hidden; */
   font-size: 24rpx;
   /* color: #fff; */

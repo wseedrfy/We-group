@@ -8,9 +8,6 @@ var moveFlag, moveFlagCurri = true;
 var roomlistindex;
 var page = undefined;
 Page({
-  onLoad: function () {
-    page = this;
-  },
   data: {
     //左侧个人信息栏
     name_ke: '我的名字',
@@ -24,19 +21,17 @@ Page({
     isAnimate_ke: false,
     apply_text: '',
     // 许愿墙
+    ke_height:wx.getSystemInfoSync().windowHeight * 0.816,
+    timer:null,
     ke_Len: 0,
     ke_click: false,
     zan: [true, false],
     cnt: ["50", "100", "150", "230", "260", "300", "360", "430", "460"],
-    ke_Data: ["sssd", "dsadfag", "弹幕需要设立审核机制", "sssd", "需要渲染的弹幕数组", "fasgasd", "fasgasd", "sssd", "dsadfag", "fasgasd",
+    ke_Data1: ["sssd", "dsadfag", "弹幕需要设立审核机制", "sssd", "需要渲染的弹幕数组", "fasgasd", "fasgasd", "sssd", "dsadfag", "fasgasd",
       "sssd", "页面的初始数据", "fasgasd", "sssd", "dsadfag", "fasgasd",
       "sssd", "页面的初始数据", "fasgasd", "sssd", "dsadfag", "fasgasd", "sssd", "dsadfag", "fasgasd", "页面的初始数据", "dsadfag",
-      "fasgasd", "sssd", "dsadfag", "fasgasd", "sssd", "dsadfag", "fasgasd",
-      "sssd", "dsadfag", "fasgasd", "弹幕需要设立审核机制", "dsadfag", "fasgasd", "sssd", "dsadfag", "需要渲染的弹幕数组", "sssd",
-      "dsadfag", "需要渲染的弹幕数组", "sssd", "dsadfag", "fasgasd", "sssd", "dsadfag", "fasgasd",
-      "sssd", "dsadfag", "页面的初始数据", "sssd", "dsadfag", "弹幕需要设立审核机制",
-      "需要渲染的弹幕数组", "需要渲染的弹幕数组", "fasgasd", "sssd", "dsadfag", "fasgasd",
     ],
+    ke_Data:[],
     danmuList: [],
     statusBarHeight: getApp().globalData.statusBarHeight,
     lineHeight: getApp().globalData.lineHeight,
@@ -276,14 +271,14 @@ Page({
 
       var timetableAnimation = wx.createAnimation({
         duration: 500,
-        timingFunction: 'ease',
+        timingFunction: 'ease-in-out',
         delay: 100,
       }).translateX(px).scale(scale).opacity(opacity1).height(height).step().export();
 
       var curriLeft = wx.createAnimation({
         duration: 500,
-        timingFunction: 'ease',
-        delay: 1000,
+        timingFunction: 'ease-in-out',
+        delay: 100,
       }).translateX(px).translateY(-20).opacity(opacity2).step().export();
 
       this.setData({
@@ -293,7 +288,7 @@ Page({
       })
       // this.data.isAnimate = !this.data.isAnimate;     // 更新 isAnimate 状态
     }
-    this.data.isAnimate_ke ? animationFunc("none", 1, 1, 0, "100%", "100%", ) : animationFunc(270, 0.88, 0.7, 1, "100%", 150)
+    this.data.isAnimate_ke ? animationFunc("none", 1, 1, 0, "100%", "100%", ) : animationFunc(500, 0.88, 0.7, 1, "100%", 150)
   },
   // 触摸开始事件
   touchStartCurri_ke: function (e) {
@@ -941,7 +936,7 @@ Page({
       this.seetingHandler()
     }
     //
-
+    this.stop()
     let navState = e.currentTarget.dataset.index
     console.log("主页", navState);
     console.log(navState);
@@ -952,6 +947,7 @@ Page({
       click_d: false,
       navState
     })
+    this.stop()
   },
   click_b: function (e) {
     //检验，如果处在侧栏信息栏，则划回
@@ -972,6 +968,7 @@ Page({
       click_d: false,
       // navState
     })
+    this.stop()
   },
   click_c: function (e) {
     //检验，如果处在侧栏信息栏，则划回
@@ -992,6 +989,7 @@ Page({
       click_d: false,
       navState
     })
+    this.begin()
   },
   click_d: function (e) {
     //检验，如果处在侧栏信息栏，则划回
@@ -1009,6 +1007,7 @@ Page({
       click_d: true,
       navState
     })
+    this.stop()
   },
   //日历初始化
   zero: function (i) {
@@ -1076,6 +1075,7 @@ Page({
         isPopping: true
       })
     }
+    this.stop()
     this.init_canvas();
     this.init_canvas2();
   },
@@ -1873,6 +1873,13 @@ Page({
    */
   //监听加载页
   onLoad() {
+    page = this;
+    //模拟读取书机缓存弹幕
+    wx.setStorage({
+      key:"danmu",
+      data:this.data.ke_Data1,
+    })
+    this.readData()
 
     // 判断登录
     // app.loginState();
@@ -1917,7 +1924,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.begin();
+    //this.begin();
   },
 
   /**
@@ -2044,16 +2051,38 @@ Page({
   },
   //弹幕开始
   begin() {
-    this.ke_start();
-    this.timer = setInterval(this.ke_start, 1600);
-    this.setData({
-      state: 'started'
+    wx.showToast({
+      icon: 'loading',
+      duration: 200,
+    })
+    var that = this
+    that.stop()
+    that.ke_start()
+    that.data.timer = setInterval(function(){
+      that.ke_start()
+    },1600);
+  },
+
+  readData(){
+    var that = this
+    wx.getStorage({
+      key: 'danmu',
+      success(res) {
+        that.setData({
+          ke_Data: res.data
+        })
+      }
     })
   },
 
-  stop() {
-    var that = this
-    clearInterval(that.timer)
+  stop:function() {
+    var interval = this.data.timer
+    clearInterval(interval)
+    this.setData({
+      timer:'',
+      danmuList:[]
+    })
+    danmulist=[]
   },
 
   //弹幕是红心还是灰心
@@ -2097,7 +2126,7 @@ Page({
     }
 
     // var i = Math.ceil(Math.random() * 60 + 2).toFixed(0)
-    danmulist.push(new Room(that.data.ke_Data[i1], this.data.cnt[Math.ceil(Math.random() * 2 + -1).toFixed(0)], Math.ceil(Math.random() * 2 + 4), that.getRandomZan()))
+    danmulist.push(new Room(this.data.ke_Data[i1], this.data.cnt[Math.ceil(Math.random() * 2 + -1).toFixed(0)], Math.ceil(Math.random() * 2 + 4), that.getRandomZan()))
     //i = Math.ceil(Math.random() * 60 + 2).toFixed(0)
     danmulist.push(new Room(that.data.ke_Data[i2], this.data.cnt[Math.ceil(Math.random() * 2 + 1).toFixed(0)], Math.ceil(Math.random() * 3 + 4), that.getRandomZan()))
     //i = Math.ceil(Math.random() * 60 + 2).toFixed(0)
