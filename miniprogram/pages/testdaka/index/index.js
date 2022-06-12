@@ -1778,6 +1778,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow() {
+      wx.cloud.database().collection('test').get().then(res=>{
+        console.log(res);
+      })
       wx.cloud.database().collection('test').where({_id:"16db756f62962ea9054834fb0bf92302"}).get().then(res=>{
         // console.log(res.data[0].tset);
         this.setData({
