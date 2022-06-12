@@ -4,7 +4,7 @@
           <view class="top" style="height: {{statusBarHeight}}px;width: 100%;background: #7c66f5;">
           </view>
           <view class="top2" style="height: {{lineHeight}}px;background: #7c66f5;line-height: {{lineHeight}}px;color: white;text-align: center;display: flex;align-items: center;flex-direction: row;">
-                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 30rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
+                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 40rpx;padding-top: 40rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
                 <view style="padding-left: 245rpx;font-size: 34rpx;">We打卡</view>
           </view>
           <calendar bind:change="dateChange" spot="{{spot}}" week="{{week}}" defaultTime="{{today}}"></calendar>
@@ -67,7 +67,7 @@
      </view>
 </view>
 <!-- 个人信息栏滑动界面 -->
-<view class="slide" animation="{{curriLeft}}" wx:if="{{isAnimate_ke}}" bindtouchstart="touchStartCurri_ke" bindtouchmove="touchMoveCurri_ke" bindtouchend="touchEndCurri_ke">
+<view class="slide" animation="{{curriLeft}}" bindtouchstart="touchStartCurri_ke" bindtouchmove="touchMoveCurri_ke" bindtouchend="touchEndCurri_ke">
      <view class="head">
           <image class="head_pic" src="../../../images/about/long.jpg" />
           <view class="head_name">{{name_ke}}</view>
@@ -103,7 +103,7 @@
 </view>
 
 <!-- 打卡页 -->
-<view wx:elif="{{navState==1}}"></view>
+<view wx:if="{{navState==1}}"></view>
 <!-- 计时页 -->
 <view wx:elif="{{navState==2}}">
      <view class="timer {{isRuning ? 'timer--runing': ''}}">
@@ -147,7 +147,31 @@
      </view>
 </view>
 <!-- 云留言页 --> 
-<view wx:elif="{{navState==3}}"></view>
+<view wx:elif="{{navState==3}}" class="Wish_Wall">
+     <view class="head">
+        <view class="head_btn">
+            <view class="btn_2">许愿墙</view>
+        </view>
+        <view class="btn_3" bindtap="want">我要许愿|还愿</view>
+        <view wx:if="{{ke_click}}" class="apply">
+            <textarea class="input" placeholder="在这里写下愿望" cols="30" rows="10" bindinput="ke_write"></textarea>
+            <view class="apply_txt">通过审核后，将会随机进行展示</view>
+            <view class="btn_apply" bindtap="apply">许下愿望</view>
+            <view class="btn_cancel" bindtap="cancel">取消</view>
+        </view>
+    </view>
+    <view class="container" style="height: {{ke_height}}px;">
+        <view class='top' wx:for="{{danmuList}}" wx:key="*this" style="top: {{item.top}}px; animation: dmAnimation2 {{item.time}}s linear 0.5s forwards; ">
+            <view class='dm'>
+                <view class="container_Like">
+                    <image wx:if="{{item.zan}}" class="like" src="../images/zan.png"></image>
+                    <image wx:else class="like" src="../images/zan1.png"></image>
+                </view>
+                <text class='content'>{{ item.text }}</text>
+            </view>
+        </view>
+    </view>
+</view>
 <!-- 小组页 -->
 <view wx:elif="{{navState==4}}">
      <!-- 顶部导航栏 -->
