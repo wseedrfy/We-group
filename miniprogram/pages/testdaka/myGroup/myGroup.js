@@ -165,7 +165,7 @@ Page({
     this.setData({
         args,
         myname:args.nickName,
-        myurl:args.iconUrl,
+        myurl:args.avatarUrl,
         groupData
     })
     this.getAllPost();

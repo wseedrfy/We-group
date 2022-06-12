@@ -38,8 +38,8 @@ Page({
     rectHeight: getApp().globalData.rectHeight,
     windowHeight: getApp().globalData.windowHeight,
     //打卡data
-    statusBarHeight: getApp().globalData.statusBarHeight,
-    lineHeight: getApp().globalData.lineHeight,
+    // statusBarHeight: getApp().globalData.statusBarHeight,
+    // lineHeight: getApp().globalData.lineHeight,
     navState: 0,
     click_a: true,
     today: "",
