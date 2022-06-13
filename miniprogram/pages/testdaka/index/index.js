@@ -21,17 +21,16 @@ Page({
     isAnimate_ke: false,
     apply_text: '',
     // 许愿墙
-    ke_height:wx.getSystemInfoSync().windowHeight * 0.816,
-    timer:null,
+    ke_height: wx.getSystemInfoSync().windowHeight * 0.816,
+    userDanmuData: [],
+    timer: null,
     ke_Len: 0,
     ke_click: false,
     zan: [true, false],
     cnt: ["50", "100", "150", "230", "260", "300", "360", "430", "460"],
-    ke_Data1: ["sssd", "dsadfag", "弹幕需要设立审核机制", "sssd", "需要渲染的弹幕数组", "fasgasd", "fasgasd", "sssd", "dsadfag", "fasgasd",
-      "sssd", "页面的初始数据", "fasgasd", "sssd", "dsadfag", "fasgasd",
-      "sssd", "页面的初始数据", "fasgasd", "sssd", "dsadfag", "fasgasd", "sssd", "dsadfag", "fasgasd", "页面的初始数据", "dsadfag",
-    ],
-    ke_Data:[],
+    ke_Data1: ["四级必过", "笑是最好的充电方式。", "最重要的是尝试新的可能。", "坚持下来！加油！", "不要担心你控制不了的东西。", "Ldleness is the factory of poverty.",
+     "一天过完，不会再来", "Above all,try something.", "If you want it,work for it.", "把自己放第一位不是自私。","Work on yourself for yourself."],
+    ke_Data: [],
     danmuList: [],
     statusBarHeight: getApp().globalData.statusBarHeight,
     lineHeight: getApp().globalData.lineHeight,
@@ -1874,12 +1873,6 @@ Page({
   //监听加载页
   onLoad() {
     page = this;
-    //模拟读取书机缓存弹幕
-    wx.setStorage({
-      key:"danmu",
-      data:this.data.ke_Data1,
-    })
-    this.readData()
 
     // 判断登录
     // app.loginState();
@@ -1901,6 +1894,23 @@ Page({
         console.log("失败失败失败");
       }
     })
+
+     //更新缓存中的弹幕
+     db.collection('danmu_List').get({
+      success: function (res) {
+        var data = res.data
+        var danmuList = []
+        danmuList = danmuList.concat(that.data.ke_Data1)
+        data.forEach(element => {
+          danmuList = danmuList.concat(element.danmu)
+        });
+        wx.setStorage({
+          key: "danmu",
+          data: danmuList,
+        })
+      }
+    })
+    this.readData()
 
     let username = wx.getStorageSync('args').username;
     // console.log(username);
@@ -2018,8 +2028,33 @@ Page({
 
   // 弹幕申请按钮
   want(e) {
-    this.setData({
+    var that = this
+    that.setData({
       ke_click: true
+    })
+    var ss = wx.getStorageSync('args')
+    db.collection('danmu_List').where({
+      username: ss.username
+    }).get({
+      success: function (res) {
+        if (res.data.length == 0) {
+          db.collection('danmu_List').add({
+            data: {
+              username: ss.username,
+              nickName: ss.nickName,
+              iconUrl: ss.iconUrl,
+              danmu: []
+            }
+          })
+          that.setData({
+            userDanmuData: []
+          })
+        } else {
+          that.setData({
+            userDanmuData: res.data[0].danmu
+          })
+        }
+      }
     })
   },
 
@@ -2029,7 +2064,7 @@ Page({
       apply_text: e.detail.value
     })
   },
-//请愿|许愿提交
+  //请愿|许愿提交
   apply(e) {
     if (!this.data.apply_text || this.data.apply_text == '') {
       wx.showToast({
@@ -2038,12 +2073,39 @@ Page({
         duration: 1000
       })
     } else {
+      wx.showLoading({
+        title: '上传中',
+        mask: true,
+        success: (result) => {
+          var ss = wx.getStorageSync('args')
+          var danmu = []
+          danmu = danmu.concat(this.data.userDanmuData)
+          danmu = danmu.concat(this.data.apply_text)
+          db.collection("danmu_List").where({
+            username: ss.username
+          }).update({
+            data: {
+              username: ss.username,
+              nickName: ss.nickName,
+              iconUrl: ss.iconUrl,
+              danmu: danmu
+            }
+          }).then(res => {
+            wx.showToast({
+              title: '申请成功',
+              icon: 'none',
+              duration: 500,
+              mask: false,
+            });
+          })
+        }
+      })
       this.setData({
         ke_click: false
       })
     }
   },
-//请愿|许愿取消
+  //请愿|许愿取消
   cancel(e) {
     this.setData({
       ke_click: false,
@@ -2052,19 +2114,21 @@ Page({
   },
   //弹幕开始
   begin() {
+    var that = this
     wx.showToast({
       icon: 'loading',
-      duration: 200,
+      duration: 50,
+      success: (result) => {
+        that.stop(),
+          that.ke_start(),
+          that.data.timer = setInterval(function () {
+            that.ke_start()
+          }, 1600);
+      }
     })
-    var that = this
-    that.stop()
-    that.ke_start()
-    that.data.timer = setInterval(function(){
-      that.ke_start()
-    },1600);
   },
 
-  readData(){
+  readData() {
     var that = this
     wx.getStorage({
       key: 'danmu',
@@ -2076,14 +2140,14 @@ Page({
     })
   },
 
-  stop:function() {
+  stop: function () {
     var interval = this.data.timer
     clearInterval(interval)
     this.setData({
-      timer:'',
-      danmuList:[]
+      timer: '',
+      danmuList: []
     })
-    danmulist=[]
+    danmulist = []
   },
 
   //弹幕是红心还是灰心

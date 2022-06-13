@@ -6,32 +6,32 @@ Page({
      * 页面的初始数据
      */
     data: {
-        roomNum: 20,//人数限制
-        qxbq: '请点击选择标签',//标签
+        roomNum: 20, //人数限制
+        qxbq: '请点击选择标签', //标签
         aimgurl: "", // //临时图片的路径
 
         bqshuru: 0,
-        array: ['学习', '运动', '娱乐', '日常', '游戏','其他'],
+        array: ['学习', '运动', '娱乐', '日常', '游戏', '其他'],
 
         countIndex: 1, // 可选图片剩余的数量
         imageData: [], // 所选上传的图片数据
 
         numLimit: [{
-            value: '5',
-            name: '5人'
-        },
-        {
-            value: '10',
-            name: '10人'
-        },
-        {
-            value: '15',
-            name: '15人'
-        },
-        {
-            value: '20',
-            name: '20人'
-        }
+                value: '5',
+                name: '5人'
+            },
+            {
+                value: '10',
+                name: '10人'
+            },
+            {
+                value: '15',
+                name: '15人'
+            },
+            {
+                value: '20',
+                name: '20人'
+            }
         ],
     },
 
@@ -131,23 +131,18 @@ Page({
                 image: '',
                 duration: 1500,
                 mask: false,
-                success: (result) => {
-                },
+                success: (result) => {},
             });
         }
         if (!this.data.roomName) {
             totast('自习室名称')
-        }
-        else if (!this.data.roomBrief) {
+        } else if (!this.data.roomBrief) {
             totast('简介')
-        }
-        else if (!this.data.index) {
+        } else if (!this.data.index) {
             totast('请点击选择标签')
-        }
-        else if (this.data.aimgurl.length == 0) {
+        } else if (this.data.aimgurl.length == 0) {
             totast('照片')
-        }
-        else {
+        } else {
             wx.showLoading({
                 title: '创建中',
                 mask: true,
@@ -155,77 +150,77 @@ Page({
                     let uid = this.guid()
                     let uuid = this.hash(this.data.args.username + this.data.roomName + uid)
                     wx.cloud.uploadFile({
-                        cloudPath: "img/" + new Date().getTime() + "-" + Math.floor(Math.random() * 1000),//云储存的路径及文件名
+                        cloudPath: "img/" + new Date().getTime() + "-" + Math.floor(Math.random() * 1000), //云储存的路径及文件名
                         filePath: this.data.aimgurl[0], //要上传的图片/文件路径 这里使用的是选择图片返回的临时地址
                         success: res => {
                             let imgUrl = res.fileID
                             wx.cloud.getTempFileURL({
-                              fileList: [imgUrl],
-                              success: res => {
-                                console.log("获取url地址：",res.fileList[0].tempFileURL);
-                                let imghttpUrl = res.fileList[0].tempFileURL
-                            db.collection("daka_group_member_information").add({
-                                data: {
-                                  group_name: this.data.roomName,
-                                  member_name:this.data.args.nickName,
-                                  member_url:this.data.args.iconUrl,
-                                  member_username:this.data.args.username,
-                                  task:[],
-                                  time_logs:[],
-                                  totalTime:0,
-                                  bgurl:imghttpUrl,
-                                  groupIntro:this.data.roomBrief,
-                                  wxname:this.data.args.nickName,
-                                  wxurl:this.data.args.iconUrl,
-                                  uuid,
-                                }
+                                fileList: [imgUrl],
+                                success: res => {
+                                    console.log("获取url地址：", res.fileList[0].tempFileURL);
+                                    let imghttpUrl = res.fileList[0].tempFileURL
+                                    db.collection("daka_group_member_information").add({
+                                        data: {
+                                            group_name: this.data.roomName,
+                                            member_name: this.data.args.nickName,
+                                            member_url: this.data.args.iconUrl,
+                                            member_username: this.data.args.username,
+                                            task: [],
+                                            time_logs: [],
+                                            totalTime: 0,
+                                            bgurl: imghttpUrl,
+                                            groupIntro: this.data.roomBrief,
+                                            wxname: this.data.args.nickName,
+                                            wxurl: this.data.args.iconUrl,
+                                            uuid,
+                                        }
+                                    })
+                                    db.collection("data_group_information").add({
+                                        data: {
+                                            group_name: this.data.roomName,
+                                            introduce: this.data.roomBrief,
+                                            notice: '',
+                                            username: this.data.args.username,
+                                            uuid,
+                                            wxname: this.data.args.nickName,
+                                            wxurl: this.data.args.iconUrl,
+                                            imgUrl: imghttpUrl,
+                                            roomNum: Number(this.data.roomNum),
+                                            qxbq: this.data.qxbq,
+                                            creattime: new Date(),
+                                        }
+                                    }).then(res => {
+                                        var pages = getCurrentPages()
+                                        var prevPage = pages[pages.length - 2]
+                                        prevPage.setData({
+                                            isupdate: true
+                                        })
+                                        wx.showToast({
+                                            title: '创建成功',
+                                            icon: 'none',
+                                            image: '',
+                                            duration: 1500,
+                                            mask: false,
+                                            success: (result) => {
+                                                setTimeout(() => {
+                                                    wx.navigateBack({
+                                                        delta: 1
+                                                    });
+                                                }, 1000);
+                                            },
+                                        });
+                                    })
+                                },
+                                fail: console.error
                             })
-                            db.collection("data_group_information").add({
-                                data: {
-                                    group_name: this.data.roomName,
-                                    introduce: this.data.roomBrief,
-                                    notice: '',
-                                    username: this.data.args.username,
-                                    uuid,
-                                    wxname: this.data.args.nickName,
-                                    wxurl: this.data.args.iconUrl,
-                                    imgUrl:imghttpUrl,
-                                    roomNum:Number(this.data.roomNum),
-                                    qxbq:this.data.qxbq,
-                                    creattime:new Date(),
-                                }
-                            }).then(res => {
-                                var pages = getCurrentPages()
-                                var prevPage = pages[pages.length - 2]
-                                prevPage.setData({
-                                  isupdate:true
-                                })
-                                wx.showToast({
-                                    title: '创建成功',
-                                    icon: 'none',
-                                    image: '',
-                                    duration: 1500,
-                                    mask: false,
-                                    success: (result) => {
-                                        setTimeout(() => {
-                                            wx.navigateBack({
-                                                delta: 1
-                                            });
-                                        }, 1000);
-                                    },
-                                });
-                            })
-                          },
-                          fail: console.error
-                        })
-                      }
+                        }
                     })
 
                 },
             });
         }
     },
-    cancel(){
+    cancel() {
         wx.navigateBack({
             delta: 1
         });
@@ -246,8 +241,7 @@ Page({
         if (typeof input == 'string') {
             for (; i > -1; i--)
                 hash += (hash << 5) + input.charCodeAt(i);
-        }
-        else {
+        } else {
             for (; i > -1; i--)
                 hash += (hash << 5) + input[i];
         }
