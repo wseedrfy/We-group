@@ -29,7 +29,7 @@ Page({
     zan: [true, false],
     cnt: ["50", "100", "150", "230", "260", "300", "360", "430", "460"],
     ke_Data1: ["四级必过", "笑是最好的充电方式。", "最重要的是尝试新的可能。", "坚持下来！加油！", "不要担心你控制不了的东西。", "Ldleness is the factory of poverty.",
-      "一天过完，不会再来", "Above all,try something.", "If you want it,work for it.", "把自己放第一位不是自私。", "Work on yourself for yourself."
+      "一天过完，不会再来", "Above all,try something.", "If you want it,work for it.", "把自己放第一位不是自私。", "Work on yourself for yourself.","不负时光，勇敢前行","六级还是大意了，好好复习，下次再来"
     ],
     ke_Data: [],
     danmuList: [],
@@ -1904,13 +1904,14 @@ Page({
       success: function (res) {
         var data = res.data
         data.forEach(element => {
-          danmuList = danmuList.concat(element.danmu)
+            danmuList = danmuList.concat(element.danmu)
+            console.log(danmuList)
         });
+        wx.setStorage({
+          key: "danmu",
+          data: danmuList,
+        })
       }
-    })
-    wx.setStorage({
-      key: "danmu",
-      data: danmuList,
     })
     this.readData()
 
@@ -2090,7 +2091,7 @@ Page({
               username: ss.username,
               nickName: ss.nickName,
               avatarUrl: ss.avatarUrl,
-              danmu: danmu
+              danmu: danmu,
             }
           }).then(res => {
             wx.showToast({
