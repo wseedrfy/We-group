@@ -1,12 +1,12 @@
 <!-- 主页 -->
 <view wx:if="{{navState==0}}" animation="{{timetableAnimation}}">
-     <view>
-          <view class="top" style="height: {{statusBarHeight}}px;width: 100%;background: #7c66f5;">
+      <view style="height: {{statusBarHeight}}px;width: 100%;background: #7c66f5;">
           </view>
-          <view class="top2" style="height: {{lineHeight}}px;background: #7c66f5;line-height: {{lineHeight}}px;color: white;text-align: center;display: flex;align-items: center;flex-direction: row;">
-                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 40rpx;padding-top: 40rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
+      <view class="top2" style="height: {{lineHeight}}px;background: #7c66f5;line-height: {{lineHeight}}px;color: white;text-align: center;display: flex;align-items: center;flex-direction: row;">
+                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 40rpx;padding-top: 0rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
                 <view style="padding-left: 245rpx;font-size: 34rpx;">We打卡</view>
-          </view>
+      </view>
+     <view>
           <calendar bind:change="dateChange" spot="{{spot}}" week="{{week}}" defaultTime="{{today}}"></calendar>
      </view>
      <view class="bg">
