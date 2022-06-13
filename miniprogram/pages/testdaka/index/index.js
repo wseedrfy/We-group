@@ -29,7 +29,8 @@ Page({
     zan: [true, false],
     cnt: ["50", "100", "150", "230", "260", "300", "360", "430", "460"],
     ke_Data1: ["四级必过", "笑是最好的充电方式。", "最重要的是尝试新的可能。", "坚持下来！加油！", "不要担心你控制不了的东西。", "Ldleness is the factory of poverty.",
-     "一天过完，不会再来", "Above all,try something.", "If you want it,work for it.", "把自己放第一位不是自私。","Work on yourself for yourself."],
+      "一天过完，不会再来", "Above all,try something.", "If you want it,work for it.", "把自己放第一位不是自私。", "Work on yourself for yourself."
+    ],
     ke_Data: [],
     danmuList: [],
     statusBarHeight: getApp().globalData.statusBarHeight,
@@ -1895,20 +1896,21 @@ Page({
       }
     })
 
-     //更新缓存中的弹幕
-     db.collection('danmu_List').get({
+    //更新缓存中的弹幕
+    var danmuList = []
+    danmuList = danmuList.concat(that.data.ke_Data1)
+    
+    db.collection('danmu_List').get({
       success: function (res) {
         var data = res.data
-        var danmuList = []
-        danmuList = danmuList.concat(that.data.ke_Data1)
         data.forEach(element => {
           danmuList = danmuList.concat(element.danmu)
         });
-        wx.setStorage({
-          key: "danmu",
-          data: danmuList,
-        })
       }
+    })
+    wx.setStorage({
+      key: "danmu",
+      data: danmuList,
     })
     this.readData()
 
@@ -2042,7 +2044,7 @@ Page({
             data: {
               username: ss.username,
               nickName: ss.nickName,
-              iconUrl: ss.iconUrl,
+              avatarUrl: ss.avatarUrl,
               danmu: []
             }
           })
@@ -2087,7 +2089,7 @@ Page({
             data: {
               username: ss.username,
               nickName: ss.nickName,
-              iconUrl: ss.iconUrl,
+              avatarUrl: ss.avatarUrl,
               danmu: danmu
             }
           }).then(res => {
