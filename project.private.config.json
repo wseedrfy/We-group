@@ -39,6 +39,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/testdaka/allgroup/allgroup",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

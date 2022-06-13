@@ -27,6 +27,12 @@ Page({
           // _openid: "oS03t5SyomLzhLSdSPde5aBFoNJ0"}
           ]
     },
+    bindinput(e){
+      console.log(e);
+      // this.setData({
+      //   input:
+      // })
+    },
     back(){
       wx.navigateBack({
         delta: 1,
