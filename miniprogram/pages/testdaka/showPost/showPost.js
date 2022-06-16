@@ -16,6 +16,97 @@ Page({
     post:'',
       // {wxname:'Start from scratch',wxurl:'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132',usernum:"20034480214",text:'第一条个人动态',sendtime:'刚刚',mylike:true,likenum:1,likename:['名字1','名字2'],groupuuid:'小组id',comment:[{name:'微信名',text:'评论内容',time:'刚刚',url:'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132',usernum:'20034480214',isleader:true}],challengename:'打卡挑战的名字',challengeid:'打卡挑战的id',_id:'数据库自动生成的id作为说说id使用',isleader:true},
     text:'',//输入框获取
+    showDayNum:false,
+    showDelte:true,
+  },
+  //删除弹窗
+  showdelete(){
+    console.log("111");
+    this.setData({
+      showDayNum:true
+    })
+    this.judegeDelte();
+  },
+  tuiShowDayNum(){
+    this.setData({
+      showDayNum:false
+    })
+  },
+  showDayNuConfirm(){
+    this.setData({
+      showDayNum:false
+    })
+  },
+  jubao(){
+    wx.showLoading({
+      title: '举报中',
+    }).then(res=>{
+      let postid = this.data.post.postid
+      console.log(postid);
+      wx.cloud.callFunction({
+        name:"daka",
+        data:{
+          type:"jubaopost",
+          postid:postid,
+        }
+      }).then(res=>{
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '举报成功',
+            })
+          },
+        })
+      })
+    })
+  },
+  judegeDelte(){
+    if (this.data.args.username==this.data.post.usernum) {
+      this.setData({
+        showDelte:false
+      })
+    }
+  },
+  delete(){
+    let that = this
+    wx.showModal({
+      title: '提示',
+      content: '是否确定删除？',
+      success(abc) {
+        if (abc.confirm) {
+          wx.showLoading({
+            title: '删除中',
+          }).then(res=>{
+            let postid = that.data.post.postid
+            that.setData({
+              isupdate:true
+            })
+            wx.cloud.callFunction({
+              name:"daka",
+              data:{
+                type:"removepost",
+                postid:postid,
+              }
+            }).then(res=>{
+              wx.hideLoading({
+                success: (res) => {
+                  wx.showToast({
+                    title: '删除成功',
+                  }).then(res=>{
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  })
+                },
+              })
+            })
+          })
+        } else if (abc.cancel) {
+          console.log('用户点击取消');
+        }
+      }
+    });
+    //removepost
   },
     //发布评论
   addcomment(){

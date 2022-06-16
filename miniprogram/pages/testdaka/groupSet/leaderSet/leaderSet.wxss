@@ -45,10 +45,10 @@ page{
   border-radius: 50%;
 }
 
-button:not([size=mini]) {
+button:not([size=big]) {
   margin-left: auto;
   margin-right: auto;
-  width: auto;
+  width: 100vw;
 }
 .bottomBox_button{
   background: white;

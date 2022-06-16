@@ -228,7 +228,8 @@ Page({
         usernum,
         wxname,
         wxurl,
-        postid
+        postid,
+        report:false,
       }
     }).then(res =>{
       this.setData({

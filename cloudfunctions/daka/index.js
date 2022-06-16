@@ -48,10 +48,16 @@ exports.main = async (event, context) => {
             return await getMyGroupByUserNum(event);
         case "getPostByGroupId":  //获取小组里的所有帖子
             return await getPostByGroupId(event);
-        case "getChallenge":  //获取小组未过期的打卡挑战 杰
+        case "getChallenge":  //获取小组未过期的打卡挑战
             return await getChallenge(event);
-        case "getAllChallenge":  //获取小组里的全部打卡挑战 杰
+        case "getAllChallenge":  //获取小组里的全部打卡挑战 
             return await getAllChallenge(event);
+        case "jubaopost":  //举报帖子
+            return await jubaopost(event);
+        case "removepost":  //删除帖子
+            return await removepost(event);//
+        case "getGroupMember":  //查询小组成员
+            return await getGroupMember(event);//
     }
 }
 
@@ -256,4 +262,30 @@ async function getAllChallenge(event){
     groupid:event.groupId,
   }).get()
 
+}
+function jubaopost(event){
+  console.log(event);
+  db.collection("personalDynamic").where({
+      postid:event.postid
+  }).update({
+      data:{
+          report:true,
+      }
+  })
+}
+function removepost(event){
+  console.log(event);
+  console.log('删除');
+  db.collection("personalDynamic").where({
+      postid:event.postid
+  }).remove({ 
+    success: function(res) {
+      console.log(res.data)
+    }
+  })
+}
+async function getGroupMember(event){
+  return await db.collection("daka_group_member_information").where({
+    uuid:event.groupid,
+  }).get()
 }

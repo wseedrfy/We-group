@@ -378,7 +378,7 @@
           </view>
           <view class="icon_a" data-index="3" bindtap="click_c">
                <image class="icon_right_2" src="{{click_c ?'../images/yun(1).png': '../images/yun.png'}}"></image>
-               <view class="{{click_c?'icon_right_2 icon_text':'icon_right_2 icon_text_false'}}">云留言</view>
+               <view class="{{click_c?'icon_right_2 icon_text':'icon_right_2 icon_text_false'}}">许愿墙</view>
           </view>
           <view class="icon_a" data-index="4" bindtap="click_d">
                <image class="icon_right" src="{{click_d ?'../images/pinktu(1).png': '../images/pinktu.png'}}"></image>

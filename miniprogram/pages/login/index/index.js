@@ -63,7 +63,7 @@ Page({
             let data = {
               username : account,
               nickName : nickName,
-              avatarUrl : avatarUrl,
+              iconUrl : avatarUrl,
               tabitem:["全部","日常","开学季","打卡"],
             }
             wx.setStorageSync('args', data)
