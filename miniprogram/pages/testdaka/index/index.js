@@ -40,7 +40,7 @@ Page({
     //打卡data
     // statusBarHeight: getApp().globalData.statusBarHeight,
     // lineHeight: getApp().globalData.lineHeight,
-    navState: 4,
+    navState: 0,
     click_a: true,
     today: "",
     dateString: "",
@@ -1992,6 +1992,10 @@ Page({
         navState:4
       })
     }
+    let StsDateString = String(this.data.dateString)
+    this.setData({
+      StsDateString
+    })
   },
 
   /**

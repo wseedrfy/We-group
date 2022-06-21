@@ -85,7 +85,7 @@
                <image class="data_group_num_pic" src="../images/group.png" />
                <view class="dd">
                     <view class="data_group_num_txt">{{txt_groupNum_ke}}</view>
-                    <view class="data_group_num_data">2022-06-17</view>
+                    <view class="data_group_num_data">{{StsDateString}}</view>
                </view>
           </view>
           <view class="data_hours" bindtap="toLogin">
