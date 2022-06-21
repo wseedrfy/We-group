@@ -16,7 +16,25 @@ Page({
     myname:'',//名字
     myurl:'',//头像
   },
-
+  personInformation(){
+    if (this.data.args.username == this.data.groupData.groupUsername) {
+      //小组长
+      let groupData = this.data.groupData
+      var thisGroupData = JSON.stringify(groupData)
+      wx.navigateTo({
+        url: '../groupSet/leaderSet/leaderSet?thisGroupData='+thisGroupData,
+      })
+    } else if (this.data.args.username != this.data.groupData.groupUsername) {
+      //普通用户
+      console.log("普通用户");
+      let groupData = this.data.groupData
+      var thisGroupData = JSON.stringify(groupData)
+      wx.navigateTo({
+        url: '../groupSet/userSet/userSet?thisGroupData='+thisGroupData,
+      })
+    }
+  },
+  //获取全部的动态
   getAllPost(){
     wx.showLoading({
       title: '加载中',
@@ -165,7 +183,7 @@ Page({
     this.setData({
         args,
         myname:args.nickName,
-        myurl:args.avatarUrl,
+        myurl:args.iconUrl,
         groupData
     })
     this.getAllPost();

@@ -240,3 +240,144 @@ margin-top: 80rpx;
   margin-left: 30rpx;
   font-size: 28rpx;
 }
+
+/* 累计打卡弹窗 */
+.showDayNum_close{
+  overflow: hidden;
+  height: 10rpx;
+  width: 100vw;
+  transition: all 0.7s;
+  position:fixed;
+  bottom: 0;
+}
+
+.showDayNum_box_close{
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 1rpx;
+  background: white;
+  border-radius: 20rpx 20rpx 0 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.6s;
+}
+.showDayNum{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  font-family: unset;
+  background-color: rgba(0, 0, 0, 0.164);
+  /* opacity: 0.6; */
+  height: 100vh;
+  width: 100vw;
+  /* transition: all 0.7s; */
+}
+.showDayNum_box{
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 550rpx;
+  background: white;
+  border-radius: 20rpx 20rpx 0 0;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s;
+}
+.showDayNum_box_title{
+  /* background: pink; */
+  /* font-weight: 600; */
+  height:110rpx;
+  width: 90%;
+  margin: 0 auto;
+  line-height: 120rpx;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+}
+.showDayNum_box_title_cancel{
+  font-size: 27rpx;
+  letter-spacing: 3rpx;
+  color: gray;
+}
+.showDayNum_box_title_title{
+  letter-spacing: 3rpx;
+}
+.showDayNum_box_title_confirm{
+  font-size: 27rpx;
+  letter-spacing: 3rpx;
+  color: #7c66f5;
+}
+.showDayNum_box_changeBox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+.showDayNum_box_changer_radio{
+  display: flex;
+  flex-direction: row;
+  padding:20rpx 0rpx;
+  width: 143rpx;
+}
+.showDayNum_box_changer{
+
+}
+.showDayNum_box_inputDay{
+  width: 150rpx;
+  height: auto;
+  border-bottom: gray;
+  /* background: #000; */
+  margin: 0 auto;
+  margin-top: 60rpx;
+}
+.showDayNum_box_line{
+  width: 300rpx;
+  height: 20rpx;
+  border-bottom: gray;
+  /* background: #000; */
+  margin: 0 auto;
+  border-bottom: 1rpx solid gray;
+}
+.jubao{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.jubao_text{
+  width: 130rpx;
+  height: 130rpx;
+  background: #7c66f5;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 130rpx;
+  color: white;
+}
+.delete{
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.delete_text{
+  width: 130rpx;
+  height: 130rpx;
+  background: #7c66f5;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 130rpx;
+  color: white;
+}

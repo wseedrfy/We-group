@@ -9,7 +9,8 @@ Page({
     data: {   
         currentPage:0, // 当前第几页,0代表第一页 
         loadMore: false, //"上拉加载"的变量，默认false，隐藏  
-        loadAll: false,//“没有数据”的变量，默认false，隐藏 
+        loadAll: false,//“没有数据”的变量，默认false，隐藏 ,
+        groupidValue:'',
         statusBarHeight: getApp().globalData.statusBarHeight,
         lineHeight: getApp().globalData.lineHeight,
         room:[
@@ -27,11 +28,43 @@ Page({
           // _openid: "oS03t5SyomLzhLSdSPde5aBFoNJ0"}
           ]
     },
-    bindinput(e){
+    //搜素框
+    searchinput(e){
       console.log(e);
-      // this.setData({
-      //   input:
-      // })
+      this.setData({
+        groupidValue:e.detail.value
+      })
+    },
+    search(){
+      let groupidValue = this.data.groupidValue
+      if (groupidValue==''||groupidValue==null||groupidValue==undefined) {
+        wx.showToast({
+          title: '请输入id',
+          icon:'error'
+        })
+      } else if (groupidValue!='') {
+        wx.showLoading({
+          title: '搜索中',
+        }).then(res=>{
+          wx.cloud.callFunction({
+            name:"daka",
+            data:{
+              type:"searchGroup",
+              groupid:groupidValue,
+            }
+          }).then(res=>{
+            console.log(res.result.data[0]);
+            let data = res.result.data[0]
+            let room = []
+            room.push(data)
+            this.setData({
+              room,
+            })
+          }).then(res=>{
+            wx.hideLoading({})
+          })
+        })
+      }
     },
     back(){
       wx.navigateBack({

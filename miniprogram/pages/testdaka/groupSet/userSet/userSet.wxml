@@ -15,13 +15,18 @@
     </view>
 </view>
 <button class="bottomBox_button" bindtap="showDayNum">
-    <view class="bottomBox_button_box1">小组名片</view>
+    <view class="bottomBox_button_box1">我的名字</view>
     <view class="bottomBox_button_box2">{{myname}}</view>
     <view class="bottomBox_button_box3">></view>
 </button>
 <button class="bottomBox_button" bindtap="showDayNum">
+    <view class="bottomBox_button_box1">小组名字</view>
+    <view class="bottomBox_button_box2">{{groupname}}</view>
+    <view class="bottomBox_button_box3">></view>
+</button>
+<button class="bottomBox_button" bindtap="showDayNum">
     <view class="bottomBox_button_box1">小组id</view>
-    <view class="bottomBox_button_box2">{{groupid}}</view>
+    <view class="bottomBox_button_box2" style="font-size: 20rpx;">{{groupid}}</view>
     <view class="bottomBox_button_box3"></view>
 </button>
 <button class="bottomBox_button" bindtap="showDayNum">

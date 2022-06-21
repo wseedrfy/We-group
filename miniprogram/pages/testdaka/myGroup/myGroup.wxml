@@ -2,9 +2,11 @@
   <view style="height: {{statusBarHeight}}px;width: 100vw;position: sticky;top: 0;"></view>
   <view style="height: {{lineHeight}}px;width: 100vw;display: flex;flex-direction: row;align-items: center;position: sticky;top:{{statusBarHeight}}px;">
     <image style="width: 43rpx;height: 43rpx;margin-left: 20rpx;" bindtap="back" src="./images/back.png"></image>
-    <image style="width: 39rpx;height: 43rpx;margin-left: 289rpx;" src="./images/rank.png"></image>
-    <image style="width: 39rpx;height: 43rpx;margin-left: 33rpx;" src="./images/shousuo.png"></image>
-    <image style="width: 43rpx;height: 43rpx;margin-left: 33rpx;transform: rotate(180deg);" src="./images/more.png"></image>
+    <image style="width: 39rpx;height: 43rpx;margin-left: 289rpx;"></image>
+    <image style="width: 39rpx;height: 43rpx;margin-left: 33rpx;"></image>
+    <!-- <image style="width: 39rpx;height: 43rpx;margin-left: 289rpx;" src="./images/rank.png"></image>
+    <image style="width: 39rpx;height: 43rpx;margin-left: 33rpx;" src="./images/shousuo.png"></image> -->
+    <image style="width: 43rpx;height: 43rpx;margin-left: 33rpx;transform: rotate(180deg);" bindtap="personInformation" src="./images/more.png"></image>
   </view>
   <view class="userUrl">
     <image src="{{myurl}}"></image>

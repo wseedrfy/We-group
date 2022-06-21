@@ -92,6 +92,8 @@
     height: 60rpx;
     border: 1rpx solid #e2e2e2;
     border-radius: 50rpx;
+    position: relative;
+    position: absolute;
 }
 .functionShow_list >image{
     width: 36rpx;

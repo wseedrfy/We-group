@@ -2,8 +2,10 @@
 .imageBg{
   width: 100vw;
   height: 500rpx;
-  background-image: url("https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%9B%BE%E7%89%87/56d8e29adaff58e3d6700082f20728c.jpg?sign=255f3c8e89d20d6d3dc3a4f4dcbddf94&t=1652512976");
-  background-size: 100% 100%; 
+  background-size: contain;
+  background-size: cover;
+  background-position:center center;
+  /* background-repeat: no-repeat; */
 }
 .userUrl{
   background: rgba(0, 0, 0, 0.089);

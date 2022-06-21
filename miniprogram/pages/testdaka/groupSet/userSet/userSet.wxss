@@ -49,7 +49,7 @@ page{
 button:not([size=mini]) {
   margin-left: auto;
   margin-right: auto;
-  width: auto;
+  width: 100vw;
 }
 .bottomBox_button{
   background: white;

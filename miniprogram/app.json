@@ -15,7 +15,8 @@
     "pages/testdaka/groupSet/leaderSet/leaderSet",
     "pages/testdaka/addDaka/addDaka",
     "pages/login/index/index",
-    "pages/login/register/register"
+    "pages/login/register/register",
+    "pages/testdaka/groupSet/memberSet/memberSet"
   ],
   "subPackages": [
     {

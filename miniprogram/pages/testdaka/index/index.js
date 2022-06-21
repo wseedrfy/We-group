@@ -12,12 +12,12 @@ Page({
     //左侧个人信息栏
     name_ke: '我的名字',
     pic_address_ke: '../../../images/about/long.jpg',
-    txt_frequence_ke: '打卡总次数',
+    txt_frequence_ke: '账号',
     frequence_ke: null,
-    txt_groupNum_ke: '我参与的小组数',
+    txt_groupNum_ke: '日期',
     groupNum_ke: null,
-    txt_hours_ke: '我的总专注时长',
-    hours_ke: null,
+    txt_hours_ke: '切换账号',
+    hours_ke: '→_→',
     isAnimate_ke: false,
     apply_text: '',
     // 许愿墙
@@ -40,7 +40,7 @@ Page({
     //打卡data
     // statusBarHeight: getApp().globalData.statusBarHeight,
     // lineHeight: getApp().globalData.lineHeight,
-    navState: 0,
+    navState: 4,
     click_a: true,
     today: "",
     dateString: "",
@@ -218,7 +218,11 @@ Page({
       // {bgurl:'https://636c-cloud1-6gtqj1v4873bad50-1307814679.tcb.qcloud.la/%E5%BC%95%E5%AF%BC%E9%A1%B5%E5%9B%BE%E7%89%87/56d8e29adaff58e3d6700082f20728c.jpg?sign=bf77187b01bd0933542d057881f3b6dc&t=1652459417',groupName:'一个进化中的编程星球',wxname:'名字',wxurl:'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132',groupIntro:"介绍"}
     ]
   },
-
+  toLogin(){
+    wx.navigateTo({
+      url: '../../login/index/index',
+    })
+  },
   getMyGroupArr() {
     let args = wx.getStorageSync('args');
     wx.cloud.callFunction({
@@ -1874,12 +1878,14 @@ Page({
   //监听加载页
   onLoad() {
     page = this;
-
+    let args = wx.getStorageSync('args');
     // 判断登录
     // app.loginState();
     var res = wx.getSystemInfoSync(); //获取设备的信息
     var rate = 750 / res.windowWidth;
+
     this.setData({
+      args,
       rate: rate,
       clockHeight: rate * res.windowHeight
     })
@@ -1968,7 +1974,7 @@ Page({
       currPage.data.mydata = null;
       console.log(currPage.data.mydata);
     }
-    // console.log(this.data.isupdate);
+    console.log(this.data.isupdate);
     if (this.data.isupdate) {
       wx.showLoading({
         title: '加载中',
@@ -1978,7 +1984,12 @@ Page({
         wx.hideLoading()
       })
       this.setData({
-        isupdate: false
+        isupdate: false,
+        click_a: false,
+        click_b: false,
+        click_c: false,
+        click_d: true,
+        navState:4
       })
     }
   },

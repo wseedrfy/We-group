@@ -50,7 +50,8 @@ page {
   left: -500px;
   top: 20px;
   z-index: 9;
-  background: -webkit-linear-gradient(#1B2347, #3C3E67, #615B8B, #8A7CB7);
+  background: rgb(241, 241, 241);
+  /* background: -webkit-linear-gradient(#1B2347, #3C3E67, #615B8B, #8A7CB7); */
   width: 100%;
   height:100%;
 }
@@ -62,6 +63,7 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 25rpx;
 }
 
 .head_pic {
@@ -78,6 +80,8 @@ page {
   font-family: 'Courier New', Courier, monospace;
   color: #ffffff;
   margin-bottom: 25PX;
+  color: #000;
+  /* margin-top: 100rpx; */
 }
 
 .head_line {
@@ -85,6 +89,7 @@ page {
   height: 2rpx;
   background: #ffffff;
   margin-top: 2%;
+  background:gray;
 }
 
 .data {
@@ -108,9 +113,11 @@ page {
 
 .dd {
   width: 100%;
+
 }
 
 .data_frequence_pic {
+  filter: invert(1) !important;
   margin-right: 10px;
   width: 30px;
   height: 30px;
@@ -122,6 +129,7 @@ page {
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
   margin-right: 3%;
+  color: #000;
 }
 
 .frequence_data {
@@ -129,6 +137,7 @@ page {
   color: #ffffff;
   font-size: 12px;
   font-family: 'Courier New', Courier, monospace;
+  color: #000;
 }
 
 .data_group_num {
@@ -145,6 +154,7 @@ page {
   margin-right: 10px;
   width: 30px;
   height: 30px;
+  filter: invert(1) !important;
 }
 
 .data_group_num_txt {
@@ -153,6 +163,7 @@ page {
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
   margin-right: 3%;
+  color: #000;
 }
 
 .data_group_num_data {
@@ -160,6 +171,7 @@ page {
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
   font-size: 12px;
+  color: #000;
 }
 
 .data_hours {
@@ -173,6 +185,7 @@ page {
   justify-items: center;
   align-items: center;
   width: 60%;
+  background: rgb(221, 221, 221);
 }
 
 .data_hours_pic {
@@ -190,6 +203,7 @@ page {
   font-family: 'Courier New', Courier, monospace;
   left: 20px;
   top: 14px;
+  color: #000;
 }
 
 .hours {
@@ -199,6 +213,7 @@ page {
   font-family: 'Courier New', Courier, monospace;
   font-size: 12px;
   left: 20px;
+  color: #000;
 }
 
 .convert{
@@ -209,6 +224,7 @@ page {
   right: 27px;
   width: 30px;
   height: 13px;
+  color: #000;
 }
 
 .goto {
@@ -216,9 +232,11 @@ page {
   right: 10px;
   width: 20px;
   height: 20px;
+  filter: invert(1) !important;
 }
 
 .tail {
+  filter: invert(1) !important;
   margin-top: 6%;
   display: flex;
   flex-direction: row;

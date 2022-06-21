@@ -27,12 +27,12 @@ Page({
     //需要渲染的数据
     abc:false,
     checkboxarr:[
-      { name: '标签一', value: 'uuid' },
-      { name: '标签二', value: 'uuid' },
-      { name: '标签三', value: 'uuid' },
-      { name: '标签四', value: 'uuid' },
-      { name: '标签五', value: 'uuid' },
-      { name: '标签六', value: 'uuid' },
+      { name: '六级', value: 'uuid' },
+      { name: '四级', value: 'uuid' },
+      { name: '二手书', value: 'uuid' },
+      { name: '寻物', value: 'uuid' },
+      { name: '运动', value: 'uuid' },
+      { name: '看书', value: 'uuid' },
     ],// '',空字符串的时候显示暂无标签
     challengeArr:[
       {totalday:21,challengename:"打卡挑战标题",deadlinetime:'长期有效',peoplenum:10,wxurl:'https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKKOWAmUxaHaIukl0M80BT6eIw8zW30E3muSOWLmEfhU60syBGHnGx3PJxIFPFt1tn9cwh45ibZ1Qg/132',isexist:true,isdaka:false}
@@ -228,7 +228,8 @@ Page({
         usernum,
         wxname,
         wxurl,
-        postid
+        postid,
+        report:false,
       }
     }).then(res =>{
       this.setData({

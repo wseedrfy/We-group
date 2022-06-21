@@ -48,10 +48,22 @@ exports.main = async (event, context) => {
             return await getMyGroupByUserNum(event);
         case "getPostByGroupId":  //获取小组里的所有帖子
             return await getPostByGroupId(event);
-        case "getChallenge":  //获取小组未过期的打卡挑战 杰
+        case "getChallenge":  //获取小组未过期的打卡挑战
             return await getChallenge(event);
-        case "getAllChallenge":  //获取小组里的全部打卡挑战 杰
+        case "getAllChallenge":  //获取小组里的全部打卡挑战 
             return await getAllChallenge(event);
+        case "jubaopost":  //举报帖子
+            return await jubaopost(event);
+        case "removepost":  //删除帖子
+            return await removepost(event);//
+        case "getGroupMember":  //查询小组成员
+            return await getGroupMember(event);
+        case "secedeGroup":  //退出小组
+            return await secedeGroup(event);
+        case "delMem":  //删除小组成 
+            return await delMem(event);
+        case "searchGroup":  //搜索小组
+            return await searchGroup(event);
     }
 }
 
@@ -256,4 +268,52 @@ async function getAllChallenge(event){
     groupid:event.groupId,
   }).get()
 
+}
+function jubaopost(event){
+  console.log(event);
+  db.collection("personalDynamic").where({
+      postid:event.postid
+  }).update({
+      data:{
+          report:true,
+      }
+  })
+}
+function removepost(event){
+  db.collection("personalDynamic").where({
+      postid:event.postid
+  }).remove({ 
+    success: function(res) {
+      console.log(res.data)
+    }
+  })
+}
+async function getGroupMember(event){
+  return await db.collection("daka_group_member_information").where({
+    uuid:event.groupid,
+  }).get()
+}
+async function secedeGroup(event){
+  db.collection("daka_group_member_information").where({
+      uuid:event.groupid
+  }).remove({
+    success: function(res) {
+      console.log(res.data)
+    }
+  })
+}
+function delMem(event){
+  db.collection("daka_group_member_information").where({
+      uuid:event.uuid,
+      member_username:event.member_username
+  }).remove({ 
+    success: function(res) {
+      console.log(res.data)
+    }
+  })
+}
+async function searchGroup(event){
+  return await db.collection("data_group_information").where({
+    uuid:event.groupid,
+  }).get()
 }

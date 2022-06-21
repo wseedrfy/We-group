@@ -1,0 +1,43 @@
+/* pages/testdaka/groupSet/memberSet/memberSet.wxss */
+button:not([size=big]) {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100vw;
+}
+.bottomBox_button{
+  background: white;
+  /* height: 100rpx; */
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  font-weight: 500;
+  font-size: 27rpx;
+  letter-spacing: 3rpx;
+  line-height: 70rpx;
+  padding-left:30rpx;
+  padding-right: 30rpx;
+  /* margin-left: 30rpx; */
+  position: relative;
+  align-items: center;
+  border-bottom: 1rpx solid gray;
+}
+.bottomBox_button_box1{
+
+}
+.bottomBox_button_box2{
+  position: absolute;
+  right: 70rpx;
+  color: gray;
+}
+.bottomBox_button_box3{
+  position: absolute;
+  right: 30rpx;
+  color: red;
+}
+.bottomBox_button_url{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}

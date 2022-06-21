@@ -8,9 +8,9 @@
 </view>
 <view class="selfstudy_othergroup_longbox">
                <view class="selfstudy_othergroup_longbox_left">
-                <input style="margin: 20rpx 20rpx;" type="text" bindinput="input" placeholder="输入小组id或者小组名字搜索..." />
+                <input style="margin: 20rpx 20rpx;" type="text" bindinput="searchinput" placeholder="输入小组id搜索..." />
                </view>
-               <view class="selfstudy_othergroup_longbox_right" ></view>
+               <view class="selfstudy_othergroup_longbox_right" bindtap="search" ></view>
 </view>
 <view class="selfstudy_othergroup_lablegroup">
                <view class="selfstudy_othergroup_lablegroup_title" style="display: flex;flex-direction: row;margin: 0rpx auto;width: 660rpx;height:80rpx ;margin-bottom: 0;top: {{statusBarHeight + 38}}px;padding: 0 40rpx;">
@@ -21,7 +21,7 @@
                     <view wx:for="{{room}}" class="lablegroup_scrollview_data"
                      style="display: inline-block;">
                          <view class="lablegroup_scrollview_data_image">
-                              <image src="{{item.imgUrl}}"></image>
+                              <image src="{{item.imgUrl}}" mode="aspectFill"></image>
                          </view>
                          <view class="lablegroup_scrollview_data_information">
                               <view class="lablegroup_scrollview_data_information_topbox">

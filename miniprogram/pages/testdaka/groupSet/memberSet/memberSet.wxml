@@ -1,0 +1,6 @@
+<button class="bottomBox_button" bindtap="showDayNum" wx:for="{{groupMemberdata}}">
+    <image class="bottomBox_button_url" src="{{item.member_url}}"/>
+    <view class="bottomBox_button_box1">{{item.member_name}}</view>
+    <view class="bottomBox_button_box2"></view>
+    <view class="bottomBox_button_box3" data-iiem="{{item}}" bindtap="delMem">✖</view>
+</button>

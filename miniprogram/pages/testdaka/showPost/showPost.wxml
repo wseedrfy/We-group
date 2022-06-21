@@ -8,7 +8,7 @@
         </view>
         <view class="textBox_post_topBox_userInfo_time">{{post.sendtime}}</view>
       </view>
-      <view class="textBox_post_topBox_right"><view></view></view>
+      <view class="textBox_post_topBox_right" bindtap="showdelete"><view ></view></view>
     </view>
     <view class="textBox_post_textBox">
       <!-- <view style="color: #6f7f8f;margin-right: 10rpx;">#打卡</view> -->
@@ -51,5 +51,19 @@
     <view style="width: 100vw;height: {{toolbarHight}}rpx;display: flex;flex-direction: row;border-top: 1rpx solid #f0f0f0;align-items: center;justify-content: center;background-color: white;">
         <input class="toolbar_input" placeholder-style="margin-left:25rpx" placeholder='"来发句评论吧ヾ(≧▽≦*)o"' value="{{text}}" adjust-position="{{false}}" type="text" bindinput="input" />
         <view class="toolbar_send" bindtap="addcomment">发送</view>
+    </view>
+</view>
+<!-- 累计打卡弹窗 -->
+<view class="{{showDayNum?'showDayNum':'showDayNum_close'}}">
+    <view class="{{showDayNum?'showDayNum_box':'showDayNum_box_close'}}">
+        <view class="showDayNum_box_title">
+            <view class="showDayNum_box_title_cancel" bindtap="tuiShowDayNum">取消</view>
+            <view class="showDayNum_box_title_title"></view>
+            <view class="showDayNum_box_title_confirm" bindtap="showDayNuConfirm">确定</view>
+        </view>
+        <view style="display: flex;flex-direction: column;width: 100vw;height: 60%;justify-content: space-around;">
+          <view class="jubao"><view class="jubao_text" bindtap="jubao">举报</view></view>
+          <view hidden="{{showDelte}}" class="delete"><view class="delete_text" bindtap="delete">删除</view></view>
+        </view>
     </view>
 </view>

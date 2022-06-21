@@ -3,7 +3,7 @@
       <view style="height: {{statusBarHeight}}px;width: 100%;background: #7c66f5;">
           </view>
       <view class="top2" style="height: {{lineHeight}}px;background: #7c66f5;line-height: {{lineHeight}}px;color: white;text-align: center;display: flex;align-items: center;flex-direction: row;">
-                <image style="width: 45rpx;height: 45rpx;display: flex;padding-left: 40rpx;padding-top: 0rpx;" src="../images/personInfo.png" bindtap="seetingHandler"></image>
+                <image style="width: 45rpx;height: 45rpx;display: flex;padding-top: 0rpx;border-radius: 50%;margin-left: 40rpx;" src="{{args.iconUrl}}" bindtap="seetingHandler"></image>
                 <view style="padding-left: 245rpx;font-size: 34rpx;">We打卡</view>
       </view>
      <view>
@@ -69,8 +69,8 @@
 <!-- 个人信息栏滑动界面 -->
 <view class="slide" animation="{{curriLeft}}" bindtouchstart="touchStartCurri_ke" bindtouchmove="touchMoveCurri_ke" bindtouchend="touchEndCurri_ke">
      <view class="head">
-          <image class="head_pic" src="../../../images/about/long.jpg" />
-          <view class="head_name">{{name_ke}}</view>
+          <image class="head_pic" src="{{args.iconUrls}}" />
+          <view class="head_name">{{args.nickName}}</view>
           <view class="head_line"></view>
      </view>
      <view class="data">
@@ -78,21 +78,21 @@
                <image class="data_frequence_pic" src="../images/frequence.png" />
                <view class="dd">
                     <view class="data_frequence_txt">{{txt_frequence_ke}}</view>
-                    <view class="frequence_data">{{frequence_ke}}</view>
+                    <view class="frequence_data">{{args.username}}</view>
                </view>
           </view>
           <view class="data_group_num">
                <image class="data_group_num_pic" src="../images/group.png" />
                <view class="dd">
                     <view class="data_group_num_txt">{{txt_groupNum_ke}}</view>
-                    <view class="data_group_num_data">{{groupNum_ke}}</view>
+                    <view class="data_group_num_data">2022-06-17</view>
                </view>
           </view>
-          <view class="data_hours">
+          <view class="data_hours" bindtap="toLogin">
                <!-- <image class="data_hours_pic" src="../images/时间.png" /> -->
                <view class="data_hours_txt">{{txt_hours_ke}}</view>
                <view class="hours">{{hours_ke}}</view>
-               <view class="convert">详情</view>
+               <view class="convert"></view>
                <image class="goto" src="../images/next_step.png" />
           </view>
      </view>
@@ -179,6 +179,7 @@
           <view style="height: {{statusBarHeight}}px;width: 100%;background: white;"></view>
           <view class="selfstudy_bar" style="height: {{lineHeight}}px;background: white;line-height: {{lineHeight}}px;color: white;text-align: center;">
                <!-- <view data-index="8" class="{{studynavState==8?'topbar_true':'topbar' }}" bindtap="navclick">我的任务</view> -->
+               <image style="width: 45rpx;height: 45rpx;display: flex;padding-top: 0rpx;border-radius: 50%;margin-left: 41rpx;" src="{{args.iconUrl}}"></image>
                <view data-index="5" wx:if="{{audit}}" class="{{studynavState==5?'topbar_true':'topbar' }}" bindtap="navclick">我的小组</view>
                <view data-index="6" class="{{studynavState==6?'topbar_true':'topbar' }}" bindtap="navclick">其他小组</view>
                <!-- <view data-index="7" class="{{studynavState==7?'topbar_true':'topbar' }}" bindtap="navclick">计时</view> -->
@@ -189,7 +190,7 @@
         <view class="inputBox"></view>
         <view class="Group">
           <view class="myGroup" data-index="{{index}}" wx:for="{{myGroupArr}}" bindtap="myGroup">
-            <image class="myGroup_image" src="{{item.bgurl}}"></image>
+            <image class="myGroup_image" src="{{item.bgurl}}" mode="aspectFill"></image>
             <view class="myGroup_groupName">{{item.groupName}}</view>
             <view class="myGroup_groupUser">
               <view class="myGroup_groupUser_name">{{item.wxname}}</view>
@@ -230,7 +231,7 @@
                <scroll-view class="mygroup_scrollview" scroll-x="true" style=" display: flex">
                     <view wx:for="{{myroomlist}}" class="mygroup_scrollview_data" style="display: inline-block;">
                          <view class="mygroup_scrollview_data_topbox">
-                              <image src="{{item.imageurl}}"></image>
+                              <image src="{{item.imageurl}}" mode="aspectFill"></image>
                          </view>
                          <view class="mygroup_scrollview_data_bottombox">
                               <view class="mygroup_scrollview_data_bottombox_left">
@@ -256,7 +257,7 @@
                <scroll-view class="lablegroup_scrollview" scroll-x="true" style=" display: flex;white-space: nowrap;">   
                     <view data-group_name="{{item.group_name}}" data-roomlistindex="{{index}}" wx:for="{{item.roomlist}}" wx:key="index"  class="lablegroup_scrollview_data" style="display: inline-block;" bindtap="intoshowgroup">
                          <view class="lablegroup_scrollview_data_image">
-                              <image src="{{item.imgUrl}}"></image>
+                              <image src="{{item.imgUrl}}" mode="aspectFill"></image>
                          </view>
                          <view class="lablegroup_scrollview_data_information">
                               <view class="lablegroup_scrollview_data_information_topbox">
@@ -359,12 +360,7 @@
 <!-- 底部导航栏 -->
 <view class="{{isRuning ? 'tabBar_running': 'tabBar'}}">
      <view class="tabBar_ring">
-          <!-- 番茄时钟入口 -->
-          <!-- <image src="../images/rank.png" class="img-style" animation="{{animCollect}}" bindtap="collect"></image> -->
-          <!-- <image src="../images/time.png" class="img-style" animation="{{animTranspond}}" bindtap="transpond"></image> -->
-          <!-- <image src="../images/log.png" class="img-style" animation="{{animInput}}" bindtap="input"></image> -->
           <image src="../images/time_2.png" data-index="2" class="img-plus-style" animation="{{animPlus}}" bindtap="plus"></image>
-          <!-- <text class="text_time">计时</text> -->
      </view>
      <view class="icon">
           <view class="icon_a" data-index="0" bindtap="click_a">
@@ -378,7 +374,7 @@
           </view>
           <view class="icon_a" data-index="3" bindtap="click_c">
                <image class="icon_right_2" src="{{click_c ?'../images/yun(1).png': '../images/yun.png'}}"></image>
-               <view class="{{click_c?'icon_right_2 icon_text':'icon_right_2 icon_text_false'}}">云留言</view>
+               <view class="{{click_c?'icon_right_2 icon_text':'icon_right_2 icon_text_false'}}">许愿墙</view>
           </view>
           <view class="icon_a" data-index="4" bindtap="click_d">
                <image class="icon_right" src="{{click_d ?'../images/pinktu(1).png': '../images/pinktu.png'}}"></image>
